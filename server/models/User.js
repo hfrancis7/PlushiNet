@@ -11,6 +11,10 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    profile_img: {
+      type: String,
+      //I don't know if needs to be unique
+    },
     email: {
       type: String,
       required: true,
