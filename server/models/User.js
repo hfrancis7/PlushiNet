@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const Post = require("./Post")
+const Comment = require("./Comment")
 
 const userSchema = new Schema(
   {
@@ -51,6 +52,8 @@ userSchema.methods.isCorrectPassword = async function (password) {
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
+
+
 
 const User = model('User', userSchema);
 

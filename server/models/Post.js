@@ -2,8 +2,6 @@ const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 var validate = require('mongoose-validator');
 
-//TODO: Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
-
 var descriptionValidator = [
     validate({
       validator: 'isLength',
@@ -33,7 +31,8 @@ const postSchema = new Schema(
             type: String,
             required: true,
         },
-        reactions: [reactionSchema]
+        reactions: [reactionSchema],
+        comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
     },
     {
         toJSON: {
@@ -46,6 +45,11 @@ const postSchema = new Schema(
 // virtual to get amount of "reactions"
 postSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
+  });
+
+//get comments length
+postSchema.virtual('commentCount').get(function () {
+    return this.comments.length;
   });
 
 const Post = model('post', postSchema);
