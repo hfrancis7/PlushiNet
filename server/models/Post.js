@@ -18,7 +18,7 @@ const postSchema = new Schema(
             type: String,
             required: true,
             trim: true,
-            validate: thoughtValidator,
+            validate: descriptionValidator,
         },
         createdAt: {
             type: Date,
@@ -34,10 +34,18 @@ const postSchema = new Schema(
     {
         toJSON: {
             getters: true,
+            virtuals: true,
         },
     }
 );
 
+// virtual to get amount of "reactions"
+postSchema.virtual('reactionCount').get(function () {
+    return this.reactions.length;
+  });
+
 const Post = model('post', postSchema);
+
+
 
 module.exports = Post;
