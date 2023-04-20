@@ -1,37 +1,29 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Category {
+  type Comment {
     _id: ID
-    name: String
-  }
-
-  type Product {
-    _id: ID
-    name: String
     description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
+    createdAt: Date
+    post: Post
   }
 
-  type Order {
+  type Post{
     _id: ID
-    purchaseDate: String
-    products: [Product]
+    description: String!
+    image: String!
+    createdAt: Date
+    reactions: [Reaction]
+    comments: [Comment]
   }
 
   type User {
     _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    orders: [Order]
-  }
-
-  type Checkout {
-    session: ID
+    username: String!
+    profile_img: String
+    email: String!
+    posts: [Post]
+    friends: [User]
   }
 
   type Auth {
