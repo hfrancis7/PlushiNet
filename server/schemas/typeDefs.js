@@ -16,17 +16,11 @@ const typeDefs = gql`
     username: String!
   }
 
-  input RegisterInput{
-    username: String!
-    password: String!
-    email: String!
-  }
-
   type User {
     _id: ID
-    username: String!
-    email: String!
+    username: String
     profile_img: String
+    email: String
     createdAt: String
   }
 
@@ -40,7 +34,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    register(registerInput: RegisterInput): Auth
+    register(username: String!, email: String!, password: String!): Auth
   }
 `;
 

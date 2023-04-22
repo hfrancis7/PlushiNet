@@ -16,19 +16,11 @@ const resolvers = {
   },
   Mutation: {
     //register = adding user
-    register: async (_, {registerInput: username, email, password}, context, info) => {
-      //validate user Data
-      //make sure User data doesn't already exist
-      //hash password (should be hashed in models)
-      const newUser = new User({
-        username,
-        email,
-        password,
-        createdAt: new Date().toString(),
-      });
-      const token = new signToken(newUser);
+    register: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
 
-      return { token, newUser };
+      return { token, user };
     },
   }
 };
