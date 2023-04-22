@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
+//const reactionSchema = require('./Reaction');
 var validate = require('mongoose-validator');
 
 var descriptionValidator = [
@@ -12,7 +12,7 @@ var descriptionValidator = [
 
 const postSchema = new Schema(
     {
-        description: {
+        body: {
             type: String,
             required: true,
             trim: true,
@@ -31,8 +31,30 @@ const postSchema = new Schema(
             type: String,
             required: true,
         },
-        reactions: [reactionSchema],
-        comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+        //reactions: [reactionSchema],
+        comments: [
+            {
+                body: String,
+                username: String,
+                createdAt: {
+                    type: Date,
+                    default: Date.now(),
+                    get: (date) => new Date(date).toLocaleString()
+                },
+            },
+        ],
+        likes: [
+            {
+                username: String,
+                type: Date,
+                default: Date.now(),
+                get: (date) => new Date(date).toLocaleString()
+            }
+        ],
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        } 
     },
     {
         toJSON: {
@@ -42,9 +64,9 @@ const postSchema = new Schema(
     }
 );
 
-// virtual to get amount of "reactions"
-postSchema.virtual('reactionCount').get(function () {
-    return this.reactions.length;
+// virtual to get amount of "likes"
+postSchema.virtual('likeCount').get(function () {
+    return this.likes.length;
   });
 
 //get comments length

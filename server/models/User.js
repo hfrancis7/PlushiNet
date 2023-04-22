@@ -13,7 +13,7 @@ const userSchema = new Schema(
     },
     profile_img: {
       type: String,
-      //I don't know if needs to be unique
+      default: "",
     },
     email: {
       type: String,
@@ -25,9 +25,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // save user and friend as object references
-    posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-    friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      get: (date) => new Date(date).toLocaleString()
+    },
   },
   // set this to use virtual below
   {

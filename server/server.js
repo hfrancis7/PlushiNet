@@ -4,6 +4,10 @@ const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const connectDB = require('./config/connection');
+const {
+  ApolloServerPluginLandingPageProductionDefault,
+  ApolloServerPluginLandingPageLocalDefault
+ } = require('apollo-server-core');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
@@ -12,6 +16,14 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+  plugins: [
+    process.env.NODE_ENV === "production"
+      ? ApolloServerPluginLandingPageProductionDefault({
+          embed: true,
+          graphRef: "plaid-gufzoj@current"
+        })
+      : ApolloServerPluginLandingPageLocalDefault({ embed: true })
+ ]
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -30,7 +42,7 @@ app.get('/', (req, res) => {
 
 connectDB();
 // Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async () => {
+const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
   
@@ -42,4 +54,4 @@ const startApolloServer = async () => {
   };
   
 // Call the async function to start the server
-  startApolloServer();
+  startApolloServer(typeDefs, resolvers);
