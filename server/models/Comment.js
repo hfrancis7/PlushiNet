@@ -14,7 +14,7 @@ var commentValidator = [
 
 const commentSchema = new Schema(
     {
-        description: {
+        body: {
             type: String,
             required: true,
             trim: true,
@@ -31,6 +31,7 @@ const commentSchema = new Schema(
         },
         // save user and friend as object references
         post: { type: Schema.Types.ObjectId, ref: "Post" },
+        user: { type: Schema.Types.ObjectId, ref: "User"},
     },
     {
         toJSON: {

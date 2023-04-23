@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Post, reactionSchema, Comment} = require('../models');
 const { signToken } = require('../utils/auth');
+const { countDocuments } = require('../models/Post');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
@@ -73,6 +74,7 @@ const resolvers = {
           return post;
         }
         throw new AuthenticationError('Not logged in');
+        
       }catch(err){
         throw new Error(err);
       }
@@ -90,6 +92,33 @@ const resolvers = {
             throw new AuthenticationError("Action not allowed.");
           }
         }
+      }catch(err){
+        throw new Error(err);
+      }
+    },
+    //createComment
+    createComment: async(parent, {postId, body}, context) =>{
+      try{
+        if (context.user) {
+          const userForName = await User.findById(context.user._id);
+          //console.log(userForName.username);
+          const post = await Post.findById(postId);
+
+          if(post){
+            const newComment = new Comment({
+              body,
+              user: context.user._id,
+              username: userForName.username,
+            })
+            const comment = await newComment.save();
+            await Comment.create(comment);
+            await Post.findByIdAndUpdate(postId, { $push: { comments: comment } }, {new: true});
+            return comment;
+          }else{
+            throw new UserInputError('Post does not exist');
+          }
+        }
+        throw new AuthenticationError('Not logged in');
       }catch(err){
         throw new Error(err);
       }
