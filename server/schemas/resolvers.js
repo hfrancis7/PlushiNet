@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
 const { User, Post, reactionSchema, Comment} = require('../models');
 const { signToken } = require('../utils/auth');
 const { countDocuments } = require('../models/Post');
@@ -109,16 +109,38 @@ const resolvers = {
               body,
               user: context.user._id,
               username: userForName.username,
+              post: postId,
             })
             const comment = await newComment.save();
             await Comment.create(comment);
             await Post.findByIdAndUpdate(postId, { $push: { comments: comment } }, {new: true});
-            return comment;
+            return await Post.findById(postId); //return post updated with comment
           }else{
             throw new UserInputError('Post does not exist');
           }
         }
         throw new AuthenticationError('Not logged in');
+      }catch(err){
+        throw new Error(err);
+      }
+    },
+    //deleteComment
+    deleteComment: async(_, {postId, commentId}, context) => {
+      try{
+        if(context.user){
+          const comment = await Comment.findById(commentId);
+          console.log(comment);
+          console.log(context.user._id);
+          console.log(comment.user._id);
+
+          if(context.user._id == comment.user._id){
+            await Post.findByIdAndUpdate(postId, { $pull: { comments: comment } })
+            await Comment.deleteOne(comment);
+            return await Post.findById(postId);
+          }else{
+            throw new AuthenticationError("Action not allowed.");
+          }
+        }
       }catch(err){
         throw new Error(err);
       }
