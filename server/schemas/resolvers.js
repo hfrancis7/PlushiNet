@@ -113,7 +113,8 @@ const resolvers = {
             })
             const comment = await newComment.save();
             await Comment.create(comment);
-            await Post.findByIdAndUpdate(postId, { $push: { comments: comment } }, {new: true});
+            await Post.findByIdAndUpdate(postId, { $push: { comments: comment } });
+            await User.findByIdAndUpdate(context.user._id, {})
             return await Post.findById(postId); //return post updated with comment
           }else{
             throw new UserInputError('Post does not exist');
