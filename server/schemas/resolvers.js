@@ -55,29 +55,44 @@ const resolvers = {
     //createPost
     createPost: async(parent, { body, image}, context) =>{
       try{
-      if (context.user) {
-        const userForName = await User.findById(context.user._id);
-        //console.log(userForName.username);
-        const newPost = new Post({
-          body,
-          user: context.user._id,
-          username: userForName.username,
-          image,
-        })
+        if (context.user) {
+          const userForName = await User.findById(context.user._id);
+          //console.log(userForName.username);
+          const newPost = new Post({
+            body,
+            user: context.user._id,
+            username: userForName.username,
+            image,
+          })
 
-        const post = await newPost.save();
+          const post = await newPost.save();
 
-        await Post.create(post);
-        await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } });
+          await Post.create(post);
+          await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } }, {new: true});
 
-        return post;
-      }
-
-      throw new AuthenticationError('Not logged in');
+          return post;
+        }
+        throw new AuthenticationError('Not logged in');
       }catch(err){
         throw new Error(err);
       }
-
+    },
+    //deletePost
+    deletePost: async(parent, {postId}, context) => {
+      try{
+        if(context.user){
+          const post = await Post.findById(postId);
+          if(context.user._id == post.user._id){
+            await User.findByIdAndUpdate(context.user._id, { $pull: { posts: post } })
+            await Post.deleteOne(post);
+            return 'Post sucessfully deleted!';
+          }else{
+            throw new AuthenticationError("Action not allowed.");
+          }
+        }
+      }catch(err){
+        throw new Error(err);
+      }
     }
   }
 };
