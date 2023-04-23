@@ -2,7 +2,6 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const Post = require("./Post")
-const Comment = require("./Comment")
 
 const userSchema = new Schema(
   {
@@ -30,6 +29,7 @@ const userSchema = new Schema(
       default: Date.now(),
       get: (date) => new Date(date).toLocaleString()
     },
+    posts: [Post.schema]
   },
   // set this to use virtual below
   {
