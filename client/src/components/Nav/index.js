@@ -2,56 +2,81 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
+//AntD imports
+import { Anchor, Layout, Menu } from "antd";
+import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
+
+const { Header } = Layout;
+
 function Nav() {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/orderHistory">
-              Order History
-            </Link>
-          </li>
-          <li className="mx-1">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
-              Logout
-            </a>
-          </li>
-        </ul>
+        <Layout className="layout">
+          <Header className="navHome">
+            <div className="logo" />
+            <Menu
+              className="navHome"
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={['2']}
+              items={[
+                {
+                  label: <Link to="/">Home</Link>,
+                  key: "home",
+                  icon: <HomeOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: (<a href="/" onClick={() => Auth.logout()}>Logout</a>),
+                  key: "logout",
+                  icon: <LogoutOutlined twoToneColor="#5784ba" />
+                }
+              ]}
+            />
+          </Header>
+        </Layout>
       );
     } else {
       return (
-        <ul className="flex-row">
-          <li className="mx-1">
-            <Link to="/signup">
-              Signup
-            </Link>
-          </li>
-          <li className="mx-1">
-            <Link to="/login">
-              Login
-            </Link>
-          </li>
-        </ul>
+        <Layout className="layout">
+          <Header className="navHome">
+            <div className="logo" />
+            <Menu
+              className="navHome"
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={['2']}
+              items={[
+                {
+                  label: <Link to="/">Home</Link>,
+                  key: "home",
+                  icon: <HomeOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/login">Login</Link>,
+                  key: "login",
+                  icon: <LoginOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/signup">Sign Up</Link>,
+                  key: "signup",
+                  icon: <UserAddOutlined twoToneColor="#5784ba" />
+                }
+              ]}
+            />
+          </Header>
+        </Layout >
       );
     }
   }
 
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
-          <span role="img" aria-label="shopping bag">🛍️</span>
-          -Shop-Shop
-        </Link>
-      </h1>
-
+    <Header className="navHome">
       <nav>
         {showNavigation()}
       </nav>
-    </header>
+    </Header>
   );
 }
 

@@ -17,6 +17,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "antd": "^5.4.5",
     "dotenv": "^16.0.3"
   }
 }
