@@ -29,7 +29,11 @@ const userSchema = new Schema(
       default: Date.now(),
       get: (date) => new Date(date).toLocaleString()
     },
-    posts: [Post.schema]
+    posts: [
+      {
+        type: Schema.Types.ObjectId, ref: "Post",
+      }
+    ]
   },
   // set this to use virtual below
   {

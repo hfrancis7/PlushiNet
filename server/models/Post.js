@@ -31,7 +31,6 @@ const postSchema = new Schema(
             type: String,
             required: true,
         },
-        //reactions: [reactionSchema],
         comments: [
             {
                 body: String,

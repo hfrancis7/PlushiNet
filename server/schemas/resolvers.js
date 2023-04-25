@@ -86,7 +86,11 @@ const resolvers = {
         if(context.user){
           const post = await Post.findById(postId);
           if(context.user._id == post.user._id){
-            await User.findByIdAndUpdate(context.user._id, { $pull: { posts: post } })
+            await User.findByIdAndUpdate(
+              {_id: context.user._id}, 
+              { $pull: { posts: post._id  } }, 
+              { new: true},
+              );
             await Post.deleteOne(post);
             return 'Post sucessfully deleted!';
           }else{
@@ -97,6 +101,18 @@ const resolvers = {
         throw new Error(err);
       }
     },
+
+    //   removeBook: async (parent, { bookId }, context) => {
+    //     if (context.user) {
+    //         const updatedUser = await User.findOneAndUpdate(
+    //             { _id: context.user._id },
+    //             { $pull: { savedBooks: { bookId } } },
+    //             { new: true },
+    //         );
+    //         return updatedUser;
+    //     };
+    //     throw new AuthenticationError("You must be logged in to delete books.");
+    // }
     //createComment
     createComment: async(parent, {postId, body}, context) =>{
       try{
