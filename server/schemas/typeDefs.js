@@ -33,6 +33,7 @@ const typeDefs = gql`
     email: String
     createdAt: String
     posts: [Post]!
+    friends: [User]!
   }
 
   type Auth {
@@ -57,6 +58,8 @@ const typeDefs = gql`
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
+    addFriend(userId: ID!): User!
+    removeFriend(userId: ID!): Auth!
   }
 `;
 

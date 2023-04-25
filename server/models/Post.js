@@ -45,9 +45,7 @@ const postSchema = new Schema(
         likes: [
             {
                 username: String,
-                type: Date,
-                default: Date.now(),
-                get: (date) => new Date(date).toLocaleString()
+                createdAt: String,
             }
         ],
         user: {

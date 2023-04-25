@@ -184,6 +184,65 @@ const resolvers = {
       }catch(err){
         throw new Error(err);
       }
+    },
+    //will like/unlike post toggle
+    likePost: async(_, {postId}, context) => {
+      try{
+        if(context.user){
+          const userForName = await User.findById(context.user._id); //context only has userid and email
+          const username = userForName.username;
+          const post = await Post.findById(postId);
+          if(post){
+            if(post.likes.find(like => like.username === username)){
+              //Post already liked, unlike it
+              post.likes = post.likes.filter(like => like.username !== username);
+            }else{
+              //Not liked, like post
+              let date = new Date();
+              console.log(date.toLocaleString());
+              post.likes.push({createdAt: date.toLocaleString(), username: username});
+            }
+            await post.save();
+            return post;
+          }else{
+            throw new UserInputError('Post does not exist!');
+          }
+        }else{
+          throw new AuthenticationError('Not logged in!')
+        }
+
+      }catch(err){
+        throw new Error(err);
+      }
+    },
+    addFriend: async(_, {userId}, context) => {
+      try{
+        if(context.user){
+          const user = await User.findById(context.user._id); //context only has userid and email
+          const newfriend = await User.findById(userId);
+          if(newfriend){
+            if(user.friends.find(existingfriend => existingfriend.username == newfriend.username)){
+              //already have friend, remove friend
+              console.log("HERE TO REMOVE");
+              user.friends = user.friends.filter(existingfriend => existingfriend.username !== newfriend.username);
+            }else{
+              console.log("HERE");
+              //friend not on list, add friend
+              user.friends.push({
+                username: newfriend.username
+              });
+              await user.save();
+              return user;
+            }
+          }else{
+            throw new UserInputError('User does not exist!');
+          }
+        }else{
+          throw new AuthenticationError("Not logged in.");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
     }
   }
 };
