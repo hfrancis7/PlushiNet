@@ -170,8 +170,8 @@ const resolvers = {
         if(context.user){
           const comment = await Comment.findById(commentId);
           const userForName = await User.findById(context.user._id);
-          // console.log(comment.username);
-          // console.log(userForName.username)
+          console.log(comment.username);
+          console.log(userForName.username)
 
           if(comment.username == userForName.username){
             await Post.findByIdAndUpdate(postId, { $pull: { comments: comment._id } }, {new: true})
