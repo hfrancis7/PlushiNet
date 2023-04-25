@@ -31,6 +31,7 @@ const commentSchema = new Schema(
         },
         // save user and friend as object references
         user: { type: Schema.Types.ObjectId, ref: "User"},
+        post: { type: Schema.Types.ObjectId, ref: "Post"},
     },
     {
         toJSON: {

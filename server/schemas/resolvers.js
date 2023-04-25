@@ -6,6 +6,7 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
+    //get all Posts
     async getPosts(){
       try{
         const posts = await Post.find().sort({createdAt: -1});
@@ -14,6 +15,7 @@ const resolvers = {
         throw new Error(err);
       }
     },
+    //get singular post
     async getPost(_, {postId}){
       try{
         const post = await Post.findById(postId);
@@ -21,6 +23,32 @@ const resolvers = {
           return post;
         }else{
           throw new Error("Post not found!");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
+    },
+    //get all comments from one post
+    async getComments(_, {postId}){
+      try{
+        const post = await Post.findById(postId);
+        if(post){
+          const comments = await Comment.find();
+          return comments;
+        }else{
+          throw new Error("Post not found!");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
+    },
+    async getComment(_, {commentId}){
+      try{
+        const comment = await Comment.findById(commentId);
+        if(comment){
+          return comment;
+        }else{
+          throw new Error("Comment not found!");
         }
       }catch(err){
         throw new Error(err);
@@ -67,7 +95,7 @@ const resolvers = {
           })
 
           const post = await newPost.save();
-          console.log(post._id);
+          //console.log(post._id);
 
           await Post.create(post);
           await User.findByIdAndUpdate(context.user._id, { $push: { posts: post._id } }, {new: true});
@@ -101,18 +129,6 @@ const resolvers = {
         throw new Error(err);
       }
     },
-
-    //   removeBook: async (parent, { bookId }, context) => {
-    //     if (context.user) {
-    //         const updatedUser = await User.findOneAndUpdate(
-    //             { _id: context.user._id },
-    //             { $pull: { savedBooks: { bookId } } },
-    //             { new: true },
-    //         );
-    //         return updatedUser;
-    //     };
-    //     throw new AuthenticationError("You must be logged in to delete books.");
-    // }
     //createComment
     createComment: async(parent, {postId, body}, context) =>{
       try{
@@ -124,14 +140,13 @@ const resolvers = {
           if(post){
             const newComment = new Comment({
               body,
-              user: context.user._id,
               username: userForName.username,
-              post: postId,
+              user: context.user._id,
+              post: post._id,
             })
             const comment = await newComment.save();
-            //await Comment.create(comment);
-            await Post.findByIdAndUpdate(postId, { $push: { comments: comment } });
-            //await User.findByIdAndUpdate(context.user._id, {})
+            await Comment.create(comment);
+            await Post.findByIdAndUpdate(postId, { $push: { comments: comment._id } }, {new: true});
             return await Post.findById(postId); //return post updated with comment
           }else{
             throw new UserInputError('Post does not exist');
@@ -152,7 +167,8 @@ const resolvers = {
           // console.log(userForName.username)
 
           if(comment.username == userForName.username){
-            await Post.findByIdAndUpdate(postId, { $pull: { comments: comment } })
+            await Post.findByIdAndUpdate(postId, { $pull: { comments: comment._id } }, {new: true})
+            await Comment.deleteOne(comment);
             return await Post.findById(postId);
           }else{
             throw new AuthenticationError("Action not allowed.");

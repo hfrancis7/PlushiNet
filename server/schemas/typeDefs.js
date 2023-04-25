@@ -43,6 +43,9 @@ const typeDefs = gql`
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post
+    getComments(postId: ID!): [Comment]
+    getComment(commentId: ID!): Comment
+
 
   }
 
