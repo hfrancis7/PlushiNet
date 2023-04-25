@@ -30,7 +30,6 @@ const commentSchema = new Schema(
             required: true,
         },
         // save user and friend as object references
-        post: { type: Schema.Types.ObjectId, ref: "Post" },
         user: { type: Schema.Types.ObjectId, ref: "User"},
     },
     {

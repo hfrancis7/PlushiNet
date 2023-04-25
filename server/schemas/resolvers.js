@@ -67,9 +67,10 @@ const resolvers = {
           })
 
           const post = await newPost.save();
+          console.log(post._id);
 
           await Post.create(post);
-          await User.findByIdAndUpdate(context.user._id, { $push: { posts: post } }, {new: true});
+          await User.findByIdAndUpdate(context.user._id, { $push: { posts: post._id } }, {new: true});
 
           return post;
         }
@@ -112,9 +113,9 @@ const resolvers = {
               post: postId,
             })
             const comment = await newComment.save();
-            await Comment.create(comment);
+            //await Comment.create(comment);
             await Post.findByIdAndUpdate(postId, { $push: { comments: comment } });
-            await User.findByIdAndUpdate(context.user._id, {})
+            //await User.findByIdAndUpdate(context.user._id, {})
             return await Post.findById(postId); //return post updated with comment
           }else{
             throw new UserInputError('Post does not exist');
@@ -130,13 +131,12 @@ const resolvers = {
       try{
         if(context.user){
           const comment = await Comment.findById(commentId);
-          console.log(comment);
-          console.log(context.user._id);
-          console.log(comment.user._id);
+          const userForName = await User.findById(context.user._id);
+          // console.log(comment.username);
+          // console.log(userForName.username)
 
-          if(context.user._id == comment.user._id){
+          if(comment.username == userForName.username){
             await Post.findByIdAndUpdate(postId, { $pull: { comments: comment } })
-            await Comment.deleteOne(comment);
             return await Post.findById(postId);
           }else{
             throw new AuthenticationError("Action not allowed.");
