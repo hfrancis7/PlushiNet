@@ -59,7 +59,6 @@ const typeDefs = gql`
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
     addFriend(userId: ID!): User!
-    removeFriend(userId: ID!): Auth!
   }
 `;
 

@@ -122,7 +122,7 @@ const resolvers = {
               );
             for(let i = 0; i < post.comments.length; i++){
               let comment_toDelete_fromPost = post.comments[i];
-              console.log(comment_toDelete_fromPost);
+              //console.log(comment_toDelete_fromPost);
               let comment_toDelete = await Comment.findById(comment_toDelete_fromPost._id);
               await Comment.deleteOne(comment_toDelete);
             }
@@ -199,7 +199,7 @@ const resolvers = {
             }else{
               //Not liked, like post
               let date = new Date();
-              console.log(date.toLocaleString());
+              //console.log(date.toLocaleString());
               post.likes.push({createdAt: date.toLocaleString(), username: username});
             }
             await post.save();
@@ -223,17 +223,17 @@ const resolvers = {
           if(newfriend){
             if(user.friends.find(existingfriend => existingfriend.username == newfriend.username)){
               //already have friend, remove friend
-              console.log("HERE TO REMOVE");
+              //console.log("HERE TO REMOVE");
               user.friends = user.friends.filter(existingfriend => existingfriend.username !== newfriend.username);
             }else{
-              console.log("HERE");
+              //console.log("HERE");
               //friend not on list, add friend
               user.friends.push({
                 username: newfriend.username
               });
-              await user.save();
-              return user;
             }
+            await user.save();
+            return user;
           }else{
             throw new UserInputError('User does not exist!');
           }
