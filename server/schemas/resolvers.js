@@ -1,5 +1,5 @@
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
-const { User, Post, reactionSchema, Comment} = require('../models');
+const { User, Post, Comment} = require('../models');
 const { signToken } = require('../utils/auth');
 const { countDocuments } = require('../models/Post');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -42,6 +42,7 @@ const resolvers = {
         throw new Error(err);
       }
     },
+    //get singular comment
     async getComment(_, {commentId}){
       try{
         const comment = await Comment.findById(commentId);
@@ -119,6 +120,12 @@ const resolvers = {
               { $pull: { posts: post._id  } }, 
               { new: true},
               );
+            for(let i = 0; i < post.comments.length; i++){
+              let comment_toDelete_fromPost = post.comments[i];
+              console.log(comment_toDelete_fromPost);
+              let comment_toDelete = await Comment.findById(comment_toDelete_fromPost._id);
+              await Comment.deleteOne(comment_toDelete);
+            }
             await Post.deleteOne(post);
             return 'Post sucessfully deleted!';
           }else{
