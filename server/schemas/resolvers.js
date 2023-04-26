@@ -54,7 +54,28 @@ const resolvers = {
       }catch(err){
         throw new Error(err);
       }
+    },
+    //get all posts posted by one user
+    async getProfilePosts(_, {userId}){
+      try{
+        const user = await User.findById(userId);
+        if(user){
+          const postIds = user.posts;
+          const posts = [];
+          for(let i = 0; i < postIds.length; i++){
+            let post = await Post.findById(postIds[i].toString());
+            posts.push(post);
+          }
+          return posts;
+        }else{
+          throw new UserInputError("User does not exist");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
     }
+
+
   },
   Mutation: {
     //register = adding user
