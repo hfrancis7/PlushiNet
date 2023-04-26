@@ -1,0 +1,47 @@
+:root {
+    --yellow: #f7f6cf;
+    --turq: #b6d8f2;
+    --pink: #f4cfdf;
+    --blue: #5784ba;
+    --skyBlue: #9ac8eb;
+    --error: rgb(228, 46, 1);
+    --spacing-one: calc(1rem * 0.5);
+    --spacing-two: calc(1rem);
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+.navHome {
+    background-color: var(--pink);
+    color: var(--blue);
+}
+
+.navLogin {
+    background-color: var(--skyBlue);
+    color: var(--blue);
+}
+
+.nav {
+    background-color: var(--yellow);
+    color: var(--blue);
+}
+
+.ant-menu-item-selected {
+    background-color: transparent !important;
+}
+
+.ant-card {
+    justify-content: center !important;
+}
