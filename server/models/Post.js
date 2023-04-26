@@ -31,15 +31,7 @@ const postSchema = new Schema(
             required: true,
         },
         comments: [
-            {
-                body: String,
-                username: String,
-                createdAt: {
-                    type: Date,
-                    default: Date.now(),
-                    get: (date) => new Date(date).toLocaleString()
-                },
-            },
+            { type: Schema.Types.ObjectId, ref: "Comment"}
         ],
         likes: [
             {
