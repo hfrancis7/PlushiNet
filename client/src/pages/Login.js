@@ -8,7 +8,6 @@ import Auth from '../utils/auth';
 import { Button, Checkbox, Form, Input } from 'antd';
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
   const [form] = Form.useForm();
   const [login, { error }] = useMutation(LOGIN);
 
@@ -23,14 +22,6 @@ function Login(props) {
     } catch (e) {
       console.log(e);
     }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
   };
 
   return (
