@@ -9,7 +9,6 @@ import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined } from '@a
 const { Header } = Layout;
 
 function Nav() {
-
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
@@ -59,7 +58,7 @@ function Nav() {
                   icon: <LoginOutlined twoToneColor="#5784ba" />
                 },
                 {
-                  label: <Link to="/signup">Sign Up</Link>,
+                  label: <Link to="/register">Sign Up</Link>,
                   key: "signup",
                   icon: <UserAddOutlined twoToneColor="#5784ba" />
                 }

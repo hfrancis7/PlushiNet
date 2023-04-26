@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { ADD_USER } from '../utils/mutations';
+import { REGISTER } from '../utils/mutations';
 
 //AntD imports
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
@@ -38,37 +38,28 @@ const tailFormItemLayout = {
   },
 };
 
-function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+function Register(props) {
+  const [form] = Form.useForm();
+  const [addUser] = useMutation(REGISTER);
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
-        email: formState.email,
-        password: formState.password,
-        username: formState.username,
+        email: form.getFieldValue().email,
+        password: form.getFieldValue().password,
+        username: form.getFieldValue().username,
       },
     });
-    const token = mutationResponse.data.addUser.token;
+    const token = mutationResponse.data.register.token;
     Auth.login(token);
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
   return (
-    <div>
       <Form
+        name="register"
         {...formItemLayout}
         form={form}
-        name="register"
         onFinish={handleFormSubmit}
         style={{
           maxWidth: 600,
@@ -83,27 +74,24 @@ function Signup(props) {
       >
         <h1 style={{ marginBottom: 20, }}>Sign Up!</h1>
         <Form.Item
-          name="email"
-          label="E-mail"
-          onFinish={handleChange}
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
+        label="Email"
+        name="email"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your email!',
+          },
+          {
               required: true,
               message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
+          },
+        ]}
+      >
+        <Input/>
+      </Form.Item>
         <Form.Item
           name="password"
           label="Password"
-          onFinish={handleChange}
           rules={[
             {
               required: true,
@@ -116,33 +104,8 @@ function Signup(props) {
         </Form.Item>
 
         <Form.Item
-          name="confirm"
-          label="Confirm Password"
-          onFinish={handleChange}
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your password!',
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('The two passwords that you entered do not match!'));
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
           name="username"
           label="Username"
-          onFinish={handleChange}
           tooltip="What do you want others to call you?"
           rules={[
             {
@@ -155,7 +118,7 @@ function Signup(props) {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+        {/* <Form.Item label="Captcha" extra="We must make sure that your are a human.">
           <Row gutter={8}>
             <Col span={12}>
               <Form.Item
@@ -175,7 +138,7 @@ function Signup(props) {
               <Button>Get captcha</Button>
             </Col>
           </Row>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
@@ -183,7 +146,12 @@ function Signup(props) {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+  );
+}
+
+export default Register;
+
+
     // <div className="container my-1">
     //   <Link to="/login">← Go to Login</Link>
 
@@ -234,7 +202,3 @@ function Signup(props) {
     //     </div>
     //   </form>
     // </div>
-  );
-}
-
-export default Signup;
