@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import Nav from './components/Nav';
 import Footer from './components/Footer'
 
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -33,6 +34,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+//Routes we still need:
+  //createPost
+  //viewPost
+  //Profile
+  //FriendList
 function App() {
   return (
     <ApolloProvider client={client}>
