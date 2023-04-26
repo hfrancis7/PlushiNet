@@ -12,7 +12,7 @@ function Login(props) {
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
-    //event.preventDefault();
+    //event.preventDefault(); -- this was throwing a "not a function error", no errors thrown upon removal, functionality still works
     try {
       const mutationResponse = await login({
         variables: { email: form.getFieldValue().email, password: form.getFieldValue().password},
