@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import { ADD_USER } from '../utils/mutations';
+import { REGISTER } from '../utils/mutations';
 
 //AntD imports
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
@@ -38,9 +38,9 @@ const tailFormItemLayout = {
   },
 };
 
-function Signup(props) {
+function Register(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser] = useMutation(REGISTER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -67,7 +67,7 @@ function Signup(props) {
     <div>
       <Form
         {...formItemLayout}
-        form={form}
+        form={Form}
         name="register"
         onFinish={handleFormSubmit}
         style={{
@@ -237,4 +237,4 @@ function Signup(props) {
   );
 }
 
-export default Signup;
+export default Register;
