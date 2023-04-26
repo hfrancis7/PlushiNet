@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-//const reactionSchema = require('./Reaction');
 var validate = require('mongoose-validator');
 
 var descriptionValidator = [
@@ -45,12 +44,15 @@ const postSchema = new Schema(
         likes: [
             {
                 username: String,
-                createdAt: String,
+                createdAt: String
             }
         ],
         user: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
+            userId: {
+                type: Schema.Types.ObjectId,
+                ref: "User",
+            },
+            username: String
         } 
     },
     {
