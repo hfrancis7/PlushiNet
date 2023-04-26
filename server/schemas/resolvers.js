@@ -54,7 +54,28 @@ const resolvers = {
       }catch(err){
         throw new Error(err);
       }
+    },
+    //get all posts posted by one user
+    async getProfilePosts(_, {userId}){
+      try{
+        const user = await User.findById(userId);
+        if(user){
+          const postIds = user.posts;
+          const posts = [];
+          for(let i = 0; i < postIds.length; i++){
+            let post = await Post.findById(postIds[i].toString());
+            posts.push(post);
+          }
+          return posts;
+        }else{
+          throw new UserInputError("User does not exist");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
     }
+
+
   },
   Mutation: {
     //register = adding user
@@ -153,7 +174,7 @@ const resolvers = {
             })
             const comment = await newComment.save();
             await Comment.create(comment);
-            await Post.findByIdAndUpdate(postId, { $push: { comments: comment._id } }, {new: true});
+            await Post.findByIdAndUpdate(postId, { $push: { comments: comment._id} }, {new: true});
             return await Post.findById(postId); //return post updated with comment
           }else{
             throw new UserInputError('Post does not exist');
@@ -170,15 +191,24 @@ const resolvers = {
         if(context.user){
           const comment = await Comment.findById(commentId);
           const userForName = await User.findById(context.user._id);
-          console.log(comment.username);
-          console.log(userForName.username)
+          const post = await Post.findById(postId);
+          // console.log(comment.user.toString());
+          // console.log(userForName._id.toString());
 
-          if(comment.username == userForName.username){
-            await Post.findByIdAndUpdate(postId, { $pull: { comments: comment._id } }, {new: true})
-            await Comment.deleteOne(comment);
-            return await Post.findById(postId);
+          if(post){
+            if(comment){
+              if(comment.user.toString() == userForName._id.toString()){
+                await Post.findByIdAndUpdate(postId, { $pull: { comments: comment._id } }, {new: true})
+                await Comment.deleteOne(comment);
+                return await Post.findById(postId);
+              }else{
+                throw new AuthenticationError("Action not allowed.");
+              }
+            }else{
+              throw new UserInputError("Comment does not exist!");
+            }
           }else{
-            throw new AuthenticationError("Action not allowed.");
+            throw new UserInputError("Post does not exist!");
           }
         }
       }catch(err){

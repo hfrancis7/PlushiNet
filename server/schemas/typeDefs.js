@@ -46,6 +46,7 @@ const typeDefs = gql`
     getPost(postId: ID!): Post
     getComments(postId: ID!): [Comment]
     getComment(commentId: ID!): Comment
+    getProfilePosts(userId: ID!): [Post]
 
 
   }

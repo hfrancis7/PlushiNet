@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-//const reactionSchema = require('./Reaction');
 var validate = require('mongoose-validator');
 
 var descriptionValidator = [
@@ -32,25 +31,20 @@ const postSchema = new Schema(
             required: true,
         },
         comments: [
-            {
-                body: String,
-                username: String,
-                createdAt: {
-                    type: Date,
-                    default: Date.now(),
-                    get: (date) => new Date(date).toLocaleString()
-                },
-            },
+            { type: Schema.Types.ObjectId, ref: "Comment"}
         ],
         likes: [
             {
                 username: String,
-                createdAt: String,
+                createdAt: String
             }
         ],
         user: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
+            userId: {
+                type: Schema.Types.ObjectId,
+                ref: "User",
+            },
+            username: String
         } 
     },
     {

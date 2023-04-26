@@ -8,28 +8,20 @@ import Auth from '../utils/auth';
 import { Button, Checkbox, Form, Input } from 'antd';
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [form] = Form.useForm();
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    //event.preventDefault(); -- this was throwing a "not a function error", no errors thrown upon removal, functionality still works
     try {
       const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
+        variables: { email: form.getFieldValue().email, password: form.getFieldValue().password},
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch (e) {
       console.log(e);
     }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
   };
 
   return (
@@ -55,6 +47,7 @@ function Login(props) {
       }}
       onFinish={handleFormSubmit}
       autoComplete="off"
+      form={form}
     >
       <h1 style={{ marginBottom: 20, }}>Log In!</h1>
       <Form.Item
@@ -63,11 +56,11 @@ function Login(props) {
         rules={[
           {
             required: true,
-            message: 'Please input your username!',
+            message: 'Please input your email!',
           },
         ]}
       >
-        <Input />
+        <Input/>
       </Form.Item>
 
       <Form.Item
