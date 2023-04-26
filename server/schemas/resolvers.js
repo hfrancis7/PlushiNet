@@ -170,19 +170,24 @@ const resolvers = {
         if(context.user){
           const comment = await Comment.findById(commentId);
           const userForName = await User.findById(context.user._id);
+          const post = await Post.findById(postId);
           // console.log(comment.user.toString());
           // console.log(userForName._id.toString());
 
-          if(comment){
-            if(comment.user.toString() == userForName._id.toString()){
-              await Post.findByIdAndUpdate(postId, { $pull: { comments: comment._id } }, {new: true})
-              await Comment.deleteOne(comment);
-              return await Post.findById(postId);
+          if(post){
+            if(comment){
+              if(comment.user.toString() == userForName._id.toString()){
+                await Post.findByIdAndUpdate(postId, { $pull: { comments: comment._id } }, {new: true})
+                await Comment.deleteOne(comment);
+                return await Post.findById(postId);
+              }else{
+                throw new AuthenticationError("Action not allowed.");
+              }
             }else{
-              throw new AuthenticationError("Action not allowed.");
+              throw new UserInputError("Comment does not exist!");
             }
           }else{
-            throw new UserInputError("Comment does not exist!");
+            throw new UserInputError("Post does not exist!");
           }
         }
       }catch(err){
