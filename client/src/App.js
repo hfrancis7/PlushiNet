@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Nav from './components/Nav';
+import Footer from './components/Footer'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -68,6 +69,7 @@ function App() {
                 element={<NoMatch />} 
               /> */}
             </Routes>
+            <Footer/>
         </div>
       </Router>
     </ApolloProvider>
