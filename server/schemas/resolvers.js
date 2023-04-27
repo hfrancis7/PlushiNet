@@ -73,9 +73,21 @@ const resolvers = {
       }catch(err){
         throw new Error(err);
       }
-    }
-
-
+    },
+    //get a user
+    async getUser(_, {userId}){
+      try{
+        const user = await User.findById(userId);
+        //passwords encrypted, should be fine
+        if(user){
+          return user;
+        }else{
+          throw new Error("User not found!");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
+    },
   },
   Mutation: {
     //register = adding user

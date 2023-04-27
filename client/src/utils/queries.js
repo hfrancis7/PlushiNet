@@ -100,5 +100,24 @@ query Query($postId: ID!) {
 }
 `;
 
+//get info about a user based on their ID
+export const QUERY_USER = gql`
+query GetUser($userId: ID!) {
+  getUser(userId: $userId) {
+    _id
+    createdAt
+    email
+    friends {
+      _id
+    }
+    posts {
+      _id
+    }
+    profile_img
+    username
+  }
+}
+`;
+
 
 

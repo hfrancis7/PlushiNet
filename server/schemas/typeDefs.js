@@ -48,8 +48,7 @@ const typeDefs = gql`
     getComments(postId: ID!): [Comment]
     getComment(commentId: ID!): Comment
     getProfilePosts(userId: ID!): [Post]
-
-
+    getUser(userId: ID!): User
   }
 
   type Mutation {
