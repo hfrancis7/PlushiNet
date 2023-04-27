@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Nav from './components/Nav';
 import Footer from './components/Footer'
+import TestUpload from './pages/TestUpload';
 
 
 const httpLink = createHttpLink({
@@ -57,6 +58,10 @@ function App() {
               <Route 
                 path="/register" 
                 element={<Register />} 
+              />
+              <Route 
+                path="/testUpload" 
+                element={<TestUpload />} 
               />
             </Routes>
             <Footer/>
