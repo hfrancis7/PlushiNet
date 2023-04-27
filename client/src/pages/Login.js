@@ -15,7 +15,7 @@ function Login(props) {
     //event.preventDefault(); -- this was throwing a "not a function error", no errors thrown upon removal, functionality still works
     try {
       const mutationResponse = await login({
-        variables: { email: form.getFieldValue().email, password: form.getFieldValue().password},
+        variables: { email: form.getFieldValue().email, password: form.getFieldValue().password },
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
@@ -60,7 +60,7 @@ function Login(props) {
           },
         ]}
       >
-        <Input/>
+        <Input />
       </Form.Item>
 
       <Form.Item
