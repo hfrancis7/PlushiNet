@@ -36,6 +36,11 @@ function Nav() {
                   label: (<a href="/" onClick={() => Auth.logout()}>Logout</a>),
                   key: "logout",
                   icon: <LogoutOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/createPost">Create Post</Link>,
+                  key: "createPost",
+                  icon: <SmileOutlined twoToneColor="#5784ba" />
                 }
               ]}
             />

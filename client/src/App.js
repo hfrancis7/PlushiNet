@@ -11,9 +11,12 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreatePost from './pages/CreatePost';
+
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Followers from './pages/Followers';
+
 
 
 const httpLink = createHttpLink({
@@ -62,6 +65,10 @@ function App() {
             <Route
               path="/followers"
               element={<Followers />}
+            />
+            <Route
+              path="/createPost"
+              element={<CreatePost />}
             />
           </Routes>
           <Footer />
