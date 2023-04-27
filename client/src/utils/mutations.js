@@ -100,3 +100,35 @@ mutation CreateComment($postId: ID!, $body: String!) {
   }
 }`;
 
+//DELETES A POST need to pass through the id of the post being deleted
+//server does check that the post belongs to user and doesn't delete if so
+//checks based on username bc i made an error in the typedefs thats going to take longer to fix
+//than just ensuring users don't have the same username... I hope.
+export const DELETE_POST = gql`
+mutation DeletePost($postId: ID!) {
+  deletePost(postId: $postId)
+}`;
+
+//DELETE COMMENT FROM POST
+//This should be the correct gql mutation request, however it is currently throwing errors that i can't figure out (12:36PM 4/27/23)
+export const DELETE_COMMENT = gql`
+mutation DeleteComment($postId: ID!, $commentId: ID!) {
+  deleteComment(postId: $postId, commentId: $commentId) {
+    _id
+    body
+    comments {
+      _id
+    }
+    createdAt
+    image
+    likeCount
+    likes {
+      _id
+      createdAt
+      username
+    }
+    username
+  }
+}
+`;
+
