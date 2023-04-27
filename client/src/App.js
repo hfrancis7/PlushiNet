@@ -14,7 +14,8 @@ import Register from './pages/Register';
 import CreatePost from './pages/CreatePost';
 
 import Nav from './components/Nav';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import Followers from './pages/Followers';
 
 
 
@@ -38,35 +39,39 @@ const client = new ApolloClient({
 });
 
 //Routes we still need:
-  //createPost
-  //viewPost
-  //Profile
-  //FriendList
+//createPost
+//viewPost
+//Profile
+//FriendList
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-            <Nav />
-            <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/register" 
-                element={<Register />} 
-              />
-              <Route 
-                path="/createPost" 
-                element={<CreatePost />} 
-              />
-            </Routes>
-            <Footer/>
+          <Nav />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/register"
+              element={<Register />}
+            />
+            <Route
+              path="/followers"
+              element={<Followers />}
+            />
+            <Route
+              path="/createPost"
+              element={<CreatePost />}
+            />
+          </Routes>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

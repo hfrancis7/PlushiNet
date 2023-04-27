@@ -5,7 +5,7 @@ import "../Nav/Nav.css";
 
 //AntD imports
 import { Anchor, Layout, Menu } from "antd";
-import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
+import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, SmileOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 
@@ -28,9 +28,19 @@ function Nav() {
                   icon: <HomeOutlined twoToneColor="#5784ba" />
                 },
                 {
+                  label: <Link to="followers">Following</Link>,
+                  key: "followers",
+                  icon: <SmileOutlined twoToneColor="#5784ba" />
+                },
+                {
                   label: (<a href="/" onClick={() => Auth.logout()}>Logout</a>),
                   key: "logout",
                   icon: <LogoutOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/createPost">Create Post</Link>,
+                  key: "createPost",
+                  icon: <SmileOutlined twoToneColor="#5784ba" />
                 }
               ]}
             />
