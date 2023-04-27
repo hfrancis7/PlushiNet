@@ -11,9 +11,11 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CreatePost from './pages/CreatePost';
+
 import Nav from './components/Nav';
 import Footer from './components/Footer'
-import TestUpload from './pages/TestUpload';
+
 
 
 const httpLink = createHttpLink({
@@ -60,8 +62,8 @@ function App() {
                 element={<Register />} 
               />
               <Route 
-                path="/testUpload" 
-                element={<TestUpload />} 
+                path="/createPost" 
+                element={<CreatePost />} 
               />
             </Routes>
             <Footer/>

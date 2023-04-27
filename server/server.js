@@ -36,11 +36,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.all('*', (req, res, next) => {
-	// <- Middleware to handle Non-existing Routes
-	next(new AppError(`Can't find ${req.originalUrl} on the server`, 404));
-});
-
 //connectDB();
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {

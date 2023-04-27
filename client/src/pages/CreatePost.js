@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { postImage } from "../api";
 
-function TestUpload() {
+
+function CreatePost() {
     const [imagePreview, setImagePreview] = useState(""); // <- To 
     const [imageFile, setImageFile] = useState({});
     const [imageUrl, setImageUrl] = useState(null);
@@ -22,11 +24,14 @@ function TestUpload() {
         }
     };
 
+    let navigate = useNavigate();
+
     const handleSubmit = async () => {    // <- This will send the selected image to our api
         try {
             const res = await postImage({ image: imageFile });
             console.log(res.data.data.imageUrl);
             setImageUrl(res.data.data.imageUrl);
+            navigate('/');
         }
         catch (err) {
             console.log(err)
@@ -56,4 +61,4 @@ function TestUpload() {
   )
 }
 
-export default TestUpload;
+export default CreatePost;
