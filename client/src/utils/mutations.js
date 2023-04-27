@@ -110,7 +110,8 @@ mutation DeletePost($postId: ID!) {
 }`;
 
 //DELETE COMMENT FROM POST
-//This should be the correct gql mutation request, however it is currently throwing errors that i can't figure out (12:36PM 4/27/23)
+//This should be the correct gql mutation request
+//FOR SOME REASON... It's not throwing 
 export const DELETE_COMMENT = gql`
 mutation DeleteComment($postId: ID!, $commentId: ID!) {
   deleteComment(postId: $postId, commentId: $commentId) {

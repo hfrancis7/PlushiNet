@@ -225,6 +225,7 @@ const resolvers = {
             throw new UserInputError("Post does not exist!");
           }
         }
+        throw new AuthenticationError('Not logged in');
       }catch(err){
         throw new Error(err);
       }
