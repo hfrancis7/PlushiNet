@@ -145,9 +145,11 @@ const resolvers = {
     //deletePost
     deletePost: async(parent, {postId}, context) => {
       try{
+        //console.log(context.user);
         if(context.user){
           const post = await Post.findById(postId);
-          if(context.user._id == post.user._id){
+          const user = await User.findById(context.user._id);
+          if(user.username == post.username){ //just discovered user id isn't defined in the typedefs even though its a model. Too far in to fix that big of a change
             await User.findByIdAndUpdate(
               {_id: context.user._id}, 
               { $pull: { posts: post._id  } }, 
