@@ -33,7 +33,7 @@ const resolvers = {
       try{
         const post = await Post.findById(postId);
         if(post){
-          const comments = await Comment.find();
+          const comments = await Comment.find().sort({createdAt: -1});
           return comments;
         }else{
           throw new Error("Post not found!");
@@ -73,9 +73,21 @@ const resolvers = {
       }catch(err){
         throw new Error(err);
       }
-    }
-
-
+    },
+    //get a user
+    async getUser(_, {userId}){
+      try{
+        const user = await User.findById(userId);
+        //passwords encrypted, should be fine
+        if(user){
+          return user;
+        }else{
+          throw new Error("User not found!");
+        }
+      }catch(err){
+        throw new Error(err);
+      }
+    },
   },
   Mutation: {
     //register = adding user
@@ -133,9 +145,11 @@ const resolvers = {
     //deletePost
     deletePost: async(parent, {postId}, context) => {
       try{
+        //console.log(context.user);
         if(context.user){
           const post = await Post.findById(postId);
-          if(context.user._id == post.user._id){
+          const user = await User.findById(context.user._id);
+          if(user.username == post.username){ //just discovered user id isn't defined in the typedefs even though its a model. Too far in to fix that big of a change
             await User.findByIdAndUpdate(
               {_id: context.user._id}, 
               { $pull: { posts: post._id  } }, 
@@ -211,6 +225,7 @@ const resolvers = {
             throw new UserInputError("Post does not exist!");
           }
         }
+        throw new AuthenticationError('Not logged in');
       }catch(err){
         throw new Error(err);
       }
