@@ -110,8 +110,7 @@ mutation DeletePost($postId: ID!) {
 }`;
 
 //DELETE COMMENT FROM POST
-//This should be the correct gql mutation request
-//FOR SOME REASON... It's not throwing 
+//Need BOTH the postId and the commentId
 export const DELETE_COMMENT = gql`
 mutation DeleteComment($postId: ID!, $commentId: ID!) {
   deleteComment(postId: $postId, commentId: $commentId) {
@@ -132,4 +131,29 @@ mutation DeleteComment($postId: ID!, $commentId: ID!) {
   }
 }
 `;
+
+//LIKE_POST
+//This is a toggle. If you make this command and the user already liked the post, it will remove the like
+export const LIKE_POST = gql`
+mutation likePost($postId: ID!) {
+  likePost(postId: $postId) {
+    _id
+    body
+    comments {
+      _id
+    }
+    createdAt
+    image
+    likeCount
+    likes {
+      _id
+      createdAt
+      username
+    }
+    username
+  }
+}
+`;
+
+
 
