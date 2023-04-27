@@ -12,7 +12,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Nav from './components/Nav';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import Followers from './pages/Followers';
 
 
 const httpLink = createHttpLink({
@@ -35,31 +36,35 @@ const client = new ApolloClient({
 });
 
 //Routes we still need:
-  //createPost
-  //viewPost
-  //Profile
-  //FriendList
+//createPost
+//viewPost
+//Profile
+//FriendList
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div>
-            <Nav />
-            <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/login" 
-                element={<Login />} 
-              />
-              <Route 
-                path="/register" 
-                element={<Register />} 
-              />
-            </Routes>
-            <Footer/>
+          <Nav />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home />}
+            />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/register"
+              element={<Register />}
+            />
+            <Route
+              path="/followers"
+              element={<Followers />}
+            />
+          </Routes>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
