@@ -33,7 +33,7 @@ const resolvers = {
       try{
         const post = await Post.findById(postId);
         if(post){
-          const comments = await Comment.find();
+          const comments = await Comment.find().sort({createdAt: -1});
           return comments;
         }else{
           throw new Error("Post not found!");
