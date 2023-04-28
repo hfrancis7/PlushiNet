@@ -20,6 +20,9 @@ import Followers from './pages/Followers';
 import PlushiDetails from './pages/PlushiDetails';
 import UserProfile from './pages/UserProfile';
 
+import PostDisplay from './components/PostDisplay';
+import ViewPost from './pages/ViewPost';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -78,6 +81,10 @@ function App() {
             <Route 
               path="/plushidetails" 
               element={<PlushiDetails/>} 
+            />
+            <Route
+            path="/postdisplay" 
+              element={<PostDisplay/>} 
             />
           </Routes>
           <Footer />
