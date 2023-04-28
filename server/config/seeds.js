@@ -1,14 +1,16 @@
+const bcrypt = require('bcrypt');
+
 const db = require('./connection');
 const { User, Post,  Comment} = require('../models');
 
 db.once('open', async () => {
   await User.deleteMany();
-
+  const saltRounds = 10;
   const users = await User.insertMany([
     {
       username: "HaileyF",
       email: 'hfran7@yahoo.com',
-      password: 'password17',
+      password: await bcrypt.hash("password17", saltRounds),
       profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682625316/zspyhlpvubnljzzfbat4.jpg',
       posts: [],
       friends: [],
@@ -16,7 +18,7 @@ db.once('open', async () => {
     {
       username: "Devin",
       email: 'devinhfran@gmail.com',
-      password: 'password17',
+      password: await bcrypt.hash("password17", saltRounds),
       profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1681945403/cld-sample.jpg',
       posts: [],
       friends: [],
@@ -24,7 +26,7 @@ db.once('open', async () => {
     {
       username: "Clark",
       email: 'Clark@gmail.com',
-      password: 'password17',
+      password: await bcrypt.hash("password17", saltRounds),
       profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682627598/g6kmqbttporqbjylfpmw.jpg',
       posts: [],
       friends: [],
