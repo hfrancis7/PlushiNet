@@ -1,155 +1,170 @@
+const bcrypt = require('bcrypt');
+
 const db = require('./connection');
-const { User, Product, Category } = require('../models');
+const { User, Post,  Comment} = require('../models');
 
 db.once('open', async () => {
-  await Category.deleteMany();
-
-  const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
-    { name: 'Electronics' },
-    { name: 'Books' },
-    { name: 'Toys' }
-  ]);
-
-  console.log('categories seeded');
-
-  await Product.deleteMany();
-
-  const products = await Product.insertMany([
+  await User.deleteMany();
+  const saltRounds = 10;
+  const users = await User.insertMany([
     {
-      name: 'Tin of Cookies',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
+      username: "HaileyF",
+      email: 'hfran7@yahoo.com',
+      password: await bcrypt.hash("password17", saltRounds),
+      profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682625316/zspyhlpvubnljzzfbat4.jpg',
+      posts: [],
+      friends: [],
     },
     {
-      name: 'Canned Coffee',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
-      category: categories[0]._id,
-      price: 1.99,
-      quantity: 500
+      username: "Devin",
+      email: 'devinhfran@gmail.com',
+      password: await bcrypt.hash("password17", saltRounds),
+      profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1681945403/cld-sample.jpg',
+      posts: [],
+      friends: [],
     },
     {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 7.99,
-      quantity: 20
-    },
-    {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
-      description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
-      quantity: 50
-    },
-    {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
-      description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      price: 14.99,
-      quantity: 100
-    },
-    {
-      name: 'Camera',
-      category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30
-    },
-    {
-      name: 'Tablet',
-      category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30
-    },
-    {
-      name: 'Tales at Bedtime',
-      category: categories[3]._id,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
-      quantity: 100
-    },
-    {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000
-    },
-    {
-      name: 'Set of Plastic Horses',
-      category: categories[4]._id,
-      description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000
-    },
-    {
-      name: 'Teddy Bear',
-      category: categories[4]._id,
-      description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
-      quantity: 100
-    },
-    {
-      name: 'Alphabet Blocks',
-      category: categories[4]._id,
-      description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600
+      username: "Clark",
+      email: 'Clark@gmail.com',
+      password: await bcrypt.hash("password17", saltRounds),
+      profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682627598/g6kmqbttporqbjylfpmw.jpg',
+      posts: [],
+      friends: [],
     }
   ]);
 
-  console.log('products seeded');
-
-  await User.deleteMany();
-
-  await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
-    email: 'pamela@testmail.com',
-    password: 'password12345',
-    orders: [
-      {
-        products: [products[0]._id, products[0]._id, products[1]._id]
-      }
-    ]
-  });
-
-  await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
-    password: 'password12345'
-  });
-
   console.log('users seeded');
+
+  await Post.deleteMany();
+
+  const posts = await Post.insertMany([
+    {
+      body: "Mr. Avocado",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682699646/plushiexample3_ks7pmx.jpg",
+      username: users[0].username,
+      comments: [],
+      likes: [],
+      user: users[0]._id,
+    },
+    {
+      body: "Stumpy",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682699647/plushiexample4_qcfxkd.jpg",
+      username: users[0].username,
+      comments: [],
+      likes: [],
+      user: users[0]._id,
+    },
+    {
+      body: "Ploosh",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682698361/plushiexample2_f1e6nt.jpg",
+      username: users[1].username,
+      comments: [],
+      likes: [],
+      user: users[1]._id,
+    },
+    {
+      body: "Appletun",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700435/P7340_701-08890_01_akjups.jpg",
+      username: users[1].username,
+      comments: [],
+      likes: [],
+      user: users[1]._id,
+    },
+    {
+      body: "White Kitty",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700435/51vsUSUP3EL._AC_UF894_1000_QL80__ekjffp.jpg",
+      username: users[1].username,
+      comments: [],
+      likes: [],
+      user: users[1]._id,
+    },
+    {
+      body: "White Kitty",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700435/51vsUSUP3EL._AC_UF894_1000_QL80__ekjffp.jpg",
+      username: users[1].username,
+      comments: [],
+      likes: [],
+      user: users[1]._id,
+    },
+    {
+      body: "Altaria",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700434/P9103_701-96785_01_bmh80z.jpg",
+      username: users[1].username,
+      comments: [],
+      likes: [],
+      user: users[1]._id,
+    },
+    {
+      body: "Psyduck",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700434/P6684_701-06481_06_m11nox.jpg",
+      username: users[2].username,
+      comments: [],
+      likes: [],
+      user: users[2]._id,
+    },
+    {
+      body: "Corgi Boi",
+      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700434/51Tahu98IiL_ffd5yu.jpg",
+      username: users[2].username,
+      comments: [],
+      likes: [],
+      user: users[2]._id,
+    },
+  ]);
+
+  //add posts to user
+  for(let i = 0; i < posts.length; i++){
+    await User.findByIdAndUpdate(posts[i].user._id, {$push: {posts: posts[i]._id}});
+  }
+  
+  console.log("posts seeded");
+
+  const comments = await Comment.insertMany([
+    {
+      body: "That's so cool!",
+      user: users[2],
+      username: users[2].username,
+      post: posts[0],
+    },
+    {
+      body: "I like your plush!",
+      user: users[1],
+      username: users[1].username,
+      post: posts[0],
+    },
+    {
+      body: "Yay!",
+      user: users[1],
+      username: users[1].username,
+      post: posts[1],
+    },
+    {
+      body: "It's so cute!",
+      user: users[2],
+      username: users[2].username,
+      post: posts[1],
+    },
+    {
+      body: "You have good taste!",
+      user: users[0],
+      username: users[0].username,
+      post: posts[2],
+    },
+    {
+      body: "Aweee!!!",
+      user: users[2],
+      username: users[2].username,
+      post: posts[2],
+    }
+  ])
+
+  for(let i = 0; i < comments.length; i++){
+    await Post.findByIdAndUpdate(comments[i].post._id, {$push: {comments: comments[i]._id}});
+  }
+
+  console.log("comments seeded");
+
+
 
   process.exit();
 });

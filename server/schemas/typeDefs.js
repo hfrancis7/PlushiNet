@@ -25,6 +25,7 @@ const typeDefs = gql`
     comments: [Comment]
     likes: [Like]
     likeCount: Int
+    user: User
   }
 
   type User {

@@ -1,10 +1,12 @@
 import axios from "axios";
 
-const httplink= "https://plushinet.herokuapp.com/";
+const link = //"https://plushinet.herokuapp.com/store-image"||
+            "http://localhost:3001/store-image";
 
-//may need to change the url for heroku deployment, not sure what to do
+console.log(link);
+
 const API = axios.create({
-    baseURL: "https://plushinet.herokuapp.com/store-image",
+    baseURL: link,
 });
 
 export const postImage = (data) =>

@@ -39,13 +39,7 @@ const postSchema = new Schema(
                 createdAt: String
             }
         ],
-        user: {
-            userId: {
-                type: Schema.Types.ObjectId,
-                ref: "User",
-            },
-            username: String
-        } 
+        user: { type: Schema.Types.ObjectId, ref: "User"},
     },
     {
         toJSON: {
