@@ -17,7 +17,8 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Followers from './pages/Followers';
 
-
+import PlushiDetails from './pages/PlushiDetails';
+import UserProfile from './pages/UserProfile';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -69,6 +70,14 @@ function App() {
             <Route
               path="/createPost"
               element={<CreatePost />}
+            />
+            <Route 
+              path="/userprofile" 
+              element={<UserProfile/>} 
+            />
+            <Route 
+              path="/plushidetails" 
+              element={<PlushiDetails/>} 
             />
           </Routes>
           <Footer />

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "../Nav/Nav.css";
 
 //AntD imports
-import { Layout, Menu } from "antd";
-import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, SmileOutlined } from '@ant-design/icons';
+import { Anchor, Layout, Menu } from "antd";
+import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, SmileOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 
@@ -46,7 +46,17 @@ function Nav() {
                   label: <Link to="/createPost">Create Post</Link>,
                   key: "createPost",
                   icon: <SmileOutlined twoToneColor="#5784ba" />
-                }
+                },
+                {
+                  label: <Link to="/userprofile">Profile</Link>,
+                  key: "profile",
+                  icon: <UserOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/explore">Explore</Link>,
+                  key: "explore",
+                  icon: <HeartOutlined twoToneColor="#5784ba" />
+                } 
               ]}
             />
           </Header>

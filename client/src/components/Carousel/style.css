@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Gloria+Hallelujah&family=Hachi+Maru+Pop&family=Mali:wght@200&display=swap');
+
+h2,h3 {
+    font-family: 'Hachi Maru Pop', cursive;
+    font-weight: 800;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    background-color: rgb(169, 213, 240);
+    margin: auto;
+    border-radius: 25px;
+    font-size: large;
+}
+
+h4 {
+    font-family: 'Chewy', cursive;
+    font-weight: 200;
+    padding: 10px;
+    background-color: rgb(235, 194, 194);
+    border-radius: 25px;
+    text-align: center;
+    
+}
+
+h5 {
+    font-family: 'Mali', cursive;
+    font-weight: 800;
+    text-align: center;
+    color: rgb(115, 114, 199);
+    padding: 15px;
+    background-color: rgb(230, 228, 228);
+    text-align: left;
+    border-radius: 25px;
+    font-size: medium;
+}
+
+.carouselimg {
+    margin: auto;
+    padding: 20px;
+    border-radius: 25px;
+    max-width: 200px;
+}
+
+.newplushi {
+    background-color: rgb(193, 238, 204);
+}
+
+.carousel {
+    border-style: dashed;
+    border-color: rgb(218, 171, 85);
+    padding: 10px;
+    border-radius: 25px;
+    background-color: white;
+    
+}
+
+.gif {
+    border-radius: 25px;
+    max-width: 90px;
+    padding: 10px;
+}
+
+.containerbox {
+    background-color: rgb(241, 230, 219);
+    padding: 20px;
+    border-radius: 25px;
+    border-style: dashed;
+    border-color: rgb(247, 225, 156);
+    margin-bottom: 20px;
+}
