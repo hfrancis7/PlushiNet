@@ -1,11 +1,12 @@
 import React from 'react'
 import MainImage from '../components/MainImage';
+import Carousel from '../components/Carousel';
 
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
       <MainImage />
+      <Carousel/>
     </div>
   )
 }
