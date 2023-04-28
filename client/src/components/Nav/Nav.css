@@ -45,3 +45,9 @@ code {
 .ant-card {
     justify-content: center !important;
 }
+
+.logoImg {
+    margin: auto;
+    margin-top: 5px;
+    box-shadow: 2px 2px 2px #ffff;
+}

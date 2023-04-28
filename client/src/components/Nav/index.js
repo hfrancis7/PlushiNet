@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../Nav/Nav.css";
 
 //AntD imports
-import { Anchor, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, SmileOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
@@ -15,7 +15,12 @@ function Nav() {
       return (
         <Layout className="layout">
           <Header className="navHome">
-            <div className="logo" />
+
+            <div className="logo"
+              style={{ float: 'left' }} >
+              <img className="logoImg" src="/images/logo192.png" alt="PlushiNet" width="50" height="50" />
+            </div>
+
             <Menu
               className="navHome"
               theme="dark"
@@ -46,7 +51,10 @@ function Nav() {
       return (
         <Layout className="layout">
           <Header className="navHome">
-            <div className="logo" />
+            <div className="logo"
+              style={{ float: 'left' }} >
+              <img className="logoImg" src="/images/logo192.png" alt="PlushiNet" width="50" height="50" />
+            </div>
             <Menu
               className="navHome"
               theme="dark"
