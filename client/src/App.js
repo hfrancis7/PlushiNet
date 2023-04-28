@@ -11,6 +11,8 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PlushiDetails from './pages/PlushiDetails';
+import UserProfile from './pages/UserProfile';
 import Nav from './components/Nav';
 import Footer from './components/Footer'
 
@@ -57,6 +59,14 @@ function App() {
               <Route 
                 path="/register" 
                 element={<Register />} 
+              />
+              <Route 
+                path="/userprofile" 
+                element={<UserProfile/>} 
+              />
+              <Route 
+                path="/plushidetails" 
+                element={<PlushiDetails/>} 
               />
             </Routes>
             <Footer/>

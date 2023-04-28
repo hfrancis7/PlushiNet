@@ -1,13 +1,17 @@
-import React from 'react'
-import MainImage from '../components/MainImage';
+import React from "react";
+import MainImage from "../components/MainImage";
+import Carousels from "../components/Carousel";
 
-function Home() {
+
+
+const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-      <MainImage />
+    <div className="container">
+      <MainImage/>
+      <Carousels/>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
+

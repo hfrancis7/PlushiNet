@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "../Nav/Nav.css";
 
 //AntD imports
-import { Anchor, Layout, Menu } from "antd";
-import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined } from '@ant-design/icons';
+import { Layout, Menu } from "antd";
+import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, UserOutlined, HeartOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 
@@ -26,6 +26,16 @@ function Nav() {
                   label: <Link to="/">Home</Link>,
                   key: "home",
                   icon: <HomeOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/userprofile">Profile</Link>,
+                  key: "profile",
+                  icon: <UserOutlined twoToneColor="#5784ba" />
+                },
+                {
+                  label: <Link to="/explore">Explore</Link>,
+                  key: "explore",
+                  icon: <HeartOutlined twoToneColor="#5784ba" />
                 },
                 {
                   label: (<a href="/" onClick={() => Auth.logout()}>Logout</a>),

@@ -5,7 +5,7 @@ import './style.css';
 function MainImage() {
   return (
     <div>
-      <img className="logoname" src={logoname} alt="logo..." />
+      <img className="logoname" src={logoname} alt="logo..." />      
     </div>
   );
 }

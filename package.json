@@ -17,6 +17,7 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "antd": "^5.4.5",
     "dotenv": "^16.0.3"
   }
