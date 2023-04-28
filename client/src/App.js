@@ -13,6 +13,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Nav from './components/Nav';
 import Footer from './components/Footer'
+import PostDisplay from './components/PostDisplay';
+import ViewPost from './pages/ViewPost';
 
 
 const httpLink = createHttpLink({
@@ -58,6 +60,10 @@ function App() {
                 path="/register" 
                 element={<Register />} 
               />
+              <Route
+               path="/viewpost" 
+               element={<ViewPost />} 
+             />
             </Routes>
             <Footer/>
         </div>
