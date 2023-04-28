@@ -16,6 +16,7 @@ const Friends = () => {
                         padding: 10
                     }}>
                     <Image
+                        className="fol-img"
                         width={200}
                         src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                     />
@@ -24,7 +25,7 @@ const Friends = () => {
                     style={{
                         backgroundColor: '#9ac8eb',
                     }}>
-                    <Card size="small" title="Friend Info" bordered={false}
+                    <Card className="fol-card" size="small" title="Friend Info" bordered={false}
                         style={{
                             width: 300,
                             margin: 'auto',
@@ -42,6 +43,7 @@ const Friends = () => {
                         padding: 10
                     }}>
                     <Image
+                        className="fol-img"
                         width={200}
                         src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
                     />
@@ -50,7 +52,7 @@ const Friends = () => {
                     style={{
                         backgroundColor: '#9ac8eb',
                     }}>
-                    <Card size="small" title="Friend Info" bordered={false}
+                    <Card className="fol-card" size="small" title="Friend Info" bordered={false}
                         style={{
                             width: 300,
                             margin: 'auto',

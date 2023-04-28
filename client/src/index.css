@@ -203,8 +203,31 @@ input:focus {
   color: var(--error);
 }
 
+/* Added by Manny for responsive Mobile view */
 @media screen and (max-width: 768px) {
   .card {
     width: 100%;
   }
+
+  .logForm {
+    margin-left: 10px !important;
+    width: 93%;
+  }
+
+  .signupForm {
+    margin-left: 10px !important;
+    width: 93%;
+  }
+
+  .fol-card {
+    width: 93% !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .fol-img {
+    width: 50% !important;
+    margin-left: 2px !important;
+  }
+
 }

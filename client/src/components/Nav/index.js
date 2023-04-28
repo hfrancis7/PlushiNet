@@ -56,7 +56,7 @@ function Nav() {
                   label: <Link to="/explore">Explore</Link>,
                   key: "explore",
                   icon: <HeartOutlined twoToneColor="#5784ba" />
-                } 
+                }
               ]}
             />
           </Header>

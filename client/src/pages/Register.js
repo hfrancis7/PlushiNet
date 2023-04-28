@@ -56,24 +56,25 @@ function Register(props) {
   };
 
   return (
-      <Form
-        name="register"
-        {...formItemLayout}
-        form={form}
-        onFinish={handleFormSubmit}
-        style={{
-          maxWidth: 600,
-          marginLeft: 50,
-          marginTop: 50,
-          marginBottom: 100,
-          backgroundColor: '#b6d8f2',
-          padding: 50,
-          borderRadius: 10,
-        }}
-        scrollToFirstError
-      >
-        <h1 style={{ marginBottom: 20, }}>Sign Up!</h1>
-        <Form.Item
+    <Form
+      className="signupForm"
+      name="register"
+      {...formItemLayout}
+      form={form}
+      onFinish={handleFormSubmit}
+      style={{
+        maxWidth: 600,
+        marginLeft: 50,
+        marginTop: 50,
+        marginBottom: 100,
+        backgroundColor: '#b6d8f2',
+        padding: 50,
+        borderRadius: 10,
+      }}
+      scrollToFirstError
+    >
+      <h1 style={{ marginBottom: 20, }}>Sign Up!</h1>
+      <Form.Item
         label="Email"
         name="email"
         rules={[
@@ -82,43 +83,43 @@ function Register(props) {
             message: 'Please input your email!',
           },
           {
-              required: true,
-              message: 'Please input your E-mail!',
+            required: true,
+            message: 'Please input your E-mail!',
           },
         ]}
       >
-        <Input/>
+        <Input />
       </Form.Item>
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
+      <Form.Item
+        name="password"
+        label="Password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
+        hasFeedback
+      >
+        <Input.Password />
+      </Form.Item>
 
-        <Form.Item
-          name="username"
-          label="Username"
-          tooltip="What do you want others to call you?"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your username!',
-              whitespace: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+      <Form.Item
+        name="username"
+        label="Username"
+        tooltip="What do you want others to call you?"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your username!',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
 
-        {/* <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+      {/* <Form.Item label="Captcha" extra="We must make sure that your are a human.">
           <Row gutter={8}>
             <Col span={12}>
               <Form.Item
@@ -140,12 +141,12 @@ function Register(props) {
           </Row>
         </Form.Item> */}
 
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
-        </Form.Item>
-      </Form>
+      <Form.Item {...tailFormItemLayout}>
+        <Button type="primary" htmlType="submit">
+          Register
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }
 
