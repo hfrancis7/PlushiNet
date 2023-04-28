@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const link = "https://plushinet.herokuapp.com/store-image"//||
-            //"http://localhost:3001/store-image";
+const link = //"https://plushinet.herokuapp.com/store-image"||
+            "http://localhost:3001/store-image";
 
 console.log(link);
 

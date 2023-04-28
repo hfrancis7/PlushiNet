@@ -2,8 +2,8 @@ const multer = require('multer'); // Multer hepls us save imgs recieved from req
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const url = req.protocol + '://' + req.get('host');
-        console.log(url);
+        // const url = req.protocol + '://' + req.get('host') + "";
+        // console.log(url);
         cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {

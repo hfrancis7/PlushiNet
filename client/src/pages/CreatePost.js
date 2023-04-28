@@ -23,9 +23,9 @@ function CreatePost() {
     };
     const handleSubmit = async () => {    // <- This will send the selected image to our api
         try {
-            const res = await postImage({ image: imageFile });
-            console.log(res.data.data.imageUrl);
-            setImageUrl(res.data.data.imageUrl);
+            // const res = await postImage({ image: imageFile });
+            // console.log(res.data.data.imageUrl);
+            // setImageUrl(res.data.data.imageUrl);
         }
         catch (err) {
             console.log(err)
