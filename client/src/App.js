@@ -8,6 +8,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import {AuthProvider} from "./utils/context"
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -50,6 +52,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <AuthProvider>
       <Router>
         <div>
           <Nav />
@@ -90,6 +93,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </AuthProvider>
     </ApolloProvider>
   );
 }
