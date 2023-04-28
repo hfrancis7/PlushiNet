@@ -207,4 +207,15 @@ input:focus {
   .card {
     width: 100%;
   }
+
+  .logForm {
+    margin-left: 10px !important;
+    width: 93%;
+  }
+
+  .signupForm {
+    margin-left: 10px !important;
+    width: 93%;
+  }
+
 }

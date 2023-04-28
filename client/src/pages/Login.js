@@ -26,6 +26,7 @@ function Login(props) {
 
   return (
     <Form
+      className="logForm"
       name="basic"
       labelCol={{
         span: 8,
