@@ -1,17 +1,18 @@
 import React from "react";
-import UserPlushies from "../components/UserPlushies";
+import PlushiDeets from "../components/PlushiDeets";
+import CommentForm from "../components/CommentForm";
 
-
-
-const UserProfile = () => {
+const PlushiDetails = () => {
   return (
-    <div className="container">
-      
-     
-      <UserPlushies />
-      
+    <div>
+      <div className="container">
+        <PlushiDeets />
+      </div>
+      <div>
+        <CommentForm />
+      </div>
     </div>
   );
 };
 
-export default UserProfile;
+export default PlushiDetails;

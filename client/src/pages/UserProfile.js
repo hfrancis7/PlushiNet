@@ -1,15 +1,15 @@
 import React from "react";
-import UserPlushies from "../components/UserPlushies";
+import GetPlushies from "../components/GetPlushies";
 
 
 
 const UserProfile = () => {
   return (
     <div className="container">
-      
-     
-      <UserPlushies />
-      
+
+
+      <GetPlushies />
+
     </div>
   );
 };

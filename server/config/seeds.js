@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const db = require('./connection');
-const { User, Post,  Comment} = require('../models');
+const { User, Post, Comment, Product } = require('../models');
 
 db.once('open', async () => {
   await User.deleteMany();
@@ -113,10 +113,10 @@ db.once('open', async () => {
   ]);
 
   //add posts to user
-  for(let i = 0; i < posts.length; i++){
-    await User.findByIdAndUpdate(posts[i].user._id, {$push: {posts: posts[i]._id}});
+  for (let i = 0; i < posts.length; i++) {
+    await User.findByIdAndUpdate(posts[i].user._id, { $push: { posts: posts[i]._id } });
   }
-  
+
   console.log("posts seeded");
 
   const comments = await Comment.insertMany([
@@ -156,15 +156,33 @@ db.once('open', async () => {
       username: users[2].username,
       post: posts[2],
     }
-  ])
+  ]);
 
-  for(let i = 0; i < comments.length; i++){
-    await Post.findByIdAndUpdate(comments[i].post._id, {$push: {comments: comments[i]._id}});
+  for (let i = 0; i < comments.length; i++) {
+    await Post.findByIdAndUpdate(comments[i].post._id, { $push: { comments: comments[i]._id } });
   }
 
   console.log("comments seeded");
 
+  //seed products
 
+  await Product.deleteMany();
+
+  const products = await Product.insertMany([
+    {
+      name: 'Wyatt',
+      description: 'Green laughing frog. Brand: Squishmallows. Condition: Like New',
+      image: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682635917/wy5hk8dqxfzr16zstjop.jpg'
+    },
+    {
+      name: 'Davie',
+      description:
+        'Plush Shark Toy. This ultra-squeezable, 12-inch, medium-sized plush stuffed toy is made with high-quality and ultrasoft materials. Brand: Squishmallows. Condition: Like New',
+      image: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682628788/ahctovkjgvvsul46brbn.jpg'
+    },
+  ]);
+
+  console.log("products seeded");
 
   process.exit();
 });
