@@ -13,17 +13,13 @@ import { AuthProvider } from "./utils/context"
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import CreatePost from './pages/CreatePost';
 
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Followers from './pages/Followers';
 
 import PlushiDetails from './pages/PlushiDetails';
-import UserProfile from './pages/UserProfile';
+import AllPlushies from './pages/AllPlushies';
 
-import PostDisplay from './components/PostDisplay';
-import ViewPost from './pages/ViewPost';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -70,28 +66,12 @@ function App() {
                 element={<Register />}
               />
               <Route
-                path="/followers"
-                element={<Followers />}
+                path="/allplushies"
+                element={<AllPlushies />}
               />
-              <Route
-                path="/createPost"
-                element={<CreatePost />}
-              />
-              <Route
-                path="/userprofile"
-                element={<UserProfile />}
-              />
-              {/* <Route
-                path="/plushidetails"
-                element={<PlushiDetails />}
-              /> */}
               <Route
                 path="/products/:_id"
                 element={<PlushiDetails />}
-              />
-              <Route
-                path="/postdisplay"
-                element={<PostDisplay />}
               />
             </Routes>
             <Footer />
