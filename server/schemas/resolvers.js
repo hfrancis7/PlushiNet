@@ -4,6 +4,7 @@ const { signToken } = require('../utils/auth');
 const { countDocuments } = require('../models/Post');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
+//product = static squishmallow which we are seeding in database
 const resolvers = {
   Query: {
     //get all Posts
@@ -26,7 +27,7 @@ const resolvers = {
       }
     },
 
-    //get all products
+    //get singular product
     async getProduct(_, { productId }) {
       try {
         const product = await Product.findById(productId);
@@ -142,7 +143,7 @@ const resolvers = {
       return { token, user };
     },
     //createPost
-    createPost: async (parent, { body, image }, context) => {
+    createPost: async (parent, { body}, context) => {
       try {
         if (context.user) {
           const userForName = await User.findById(context.user._id);
@@ -151,7 +152,6 @@ const resolvers = {
             body,
             user: context.user._id,
             username: userForName.username,
-            image,
           })
 
           const post = await newPost.save();
