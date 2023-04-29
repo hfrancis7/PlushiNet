@@ -38,8 +38,8 @@ function Nav() {
                   icon: <LogoutOutlined twoToneColor="#5784ba" />
                 },
                 {
-                  label: <Link to="/userprofile">All Plushies</Link>,
-                  key: "profile",
+                  label: <Link to="/allplushies">All Plushies</Link>,
+                  key: "allplushies",
                   icon: <UserOutlined twoToneColor="#5784ba" />
                 }
               ]}

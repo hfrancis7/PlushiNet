@@ -3,7 +3,7 @@ import GetPlushies from "../components/GetPlushies";
 
 
 
-const UserProfile = () => {
+const AllPlushies = () => {
   return (
     <div className="container">
 
@@ -14,4 +14,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default AllPlushies;
