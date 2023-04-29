@@ -50,4 +50,5 @@ code {
     margin: auto;
     margin-top: 5px;
     box-shadow: 2px 2px 2px #ffff;
+    max-width: 50px;
 }

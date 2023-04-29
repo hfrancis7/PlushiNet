@@ -21,14 +21,13 @@ function Carousels() {
         </h2>     
         <Carousel autoplay>
           <div>
-            <img className='carouselimg' src={plushiexample} alt="plushiexample..." />
             <h4>Toast</h4>
-            <h5>From the PlushiNet of:</h5>
+            <img className='carouselimg' src={plushiexample} alt="plushiexample..." />
+            
           </div>
           <div>
-            <img className='carouselimg' src={plushiexample2} alt="plushiexample..." />
             <h4>Octopus</h4>
-            <h5>From the PlushiNet of:</h5>
+            <img className='carouselimg' src={plushiexample2} alt="plushiexample..." />
           </div>
         </Carousel>
       </Col>
@@ -39,14 +38,13 @@ function Carousels() {
               
         <Carousel autoplay>
           <div>
-            <img className='carouselimg' src={plushiexample3} alt="plushiexample..." />
             <h4>Avacado</h4>
-            <h5>From the PlushiNet of:</h5>
+            <img className='carouselimg' src={plushiexample3} alt="plushiexample..." />
+            
           </div>
           <div>
-            <img className='carouselimg' src={plushiexample4} alt="plushiexample..." />
             <h4>Groot</h4>
-            <h5>From the PlushiNet of:</h5>
+            <img className='carouselimg' src={plushiexample4} alt="plushiexample..." />
           </div>
         </Carousel>
       </Col>    

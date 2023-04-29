@@ -6,7 +6,7 @@ const cors = require('cors');
 const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const routes = require('./routes/route')
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -23,7 +23,7 @@ app.use(cors({ credentials: true, origin: process.env.REMOTE }));
 app.options(process.env.REMOTE, cors());
 
 //route for image upload
-app.use("/store-image", routes);
+
 
 // Serve up static assets
 app.use('/images', express.static(path.join(__dirname, '../client/images')));

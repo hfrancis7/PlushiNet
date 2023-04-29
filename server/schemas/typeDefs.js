@@ -28,6 +28,12 @@ const typeDefs = gql`
     user: User
   }
 
+  type Product {
+    name: String
+    description: String
+    image: String
+  }
+
   type User {
     _id: ID!
     username: String
@@ -50,7 +56,7 @@ const typeDefs = gql`
     getComment(commentId: ID!): Comment
     getProfilePosts(userId: ID!): [Post]
     getUser(userId: ID!): User
-    products(category: ID, name: String): [Product]
+    products(name: String): [Product]
     product(_id: ID!): Product
   }
 
@@ -65,12 +71,7 @@ const typeDefs = gql`
     addFriend(userId: ID!): User!
   }
 
-  type Product {
-    _id: ID
-    name: String
-    description: String
-    image: String
-  }
+
 `;
 
 module.exports = typeDefs;

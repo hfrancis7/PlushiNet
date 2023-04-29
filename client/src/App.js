@@ -7,7 +7,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import { StoreProvider } from './utils/GlobalState';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -18,7 +18,9 @@ import Footer from './components/Footer';
 import Followers from './pages/Followers';
 
 import PlushiDetails from './pages/PlushiDetails';
-import UserProfile from './pages/UserProfile';
+import Explore from './pages/Explore';
+
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,6 +51,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
+        <StoreProvider>
           <Nav />
           <Routes>
             <Route
@@ -72,15 +75,16 @@ function App() {
               element={<CreatePost />}
             />
             <Route 
-              path="/userprofile" 
-              element={<UserProfile/>} 
+              path="/allProducts" 
+              element={<Explore/>} 
             />
             <Route 
-              path="/plushidetails" 
-              element={<PlushiDetails/>} 
+                path="/products/:id" 
+                element={<PlushiDetails />} 
             />
           </Routes>
           <Footer />
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

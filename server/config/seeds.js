@@ -4,6 +4,8 @@ const db = require('./connection');
 const { User, Post,  Comment, Product} = require('../models');
 
 db.once('open', async () => {
+  
+  await Product.deleteMany();
 
   const products = await Product.insertMany([
     {
@@ -92,6 +94,7 @@ db.once('open', async () => {
       profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682625316/zspyhlpvubnljzzfbat4.jpg',
       posts: [],
       friends: [],
+      
     },
     {
       username: "Devin",

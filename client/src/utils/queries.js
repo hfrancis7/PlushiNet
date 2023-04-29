@@ -120,8 +120,8 @@ query GetUser($userId: ID!) {
 `;
 
 export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+  query getProducts {
+    products {
       _id
       name
       description
@@ -129,13 +129,12 @@ export const QUERY_PRODUCTS = gql`
     }
   }
 `;
-
-// export const QUERY_ALL_PRODUCTS = gql`
-//   {
-//     products {
-//       _id
-//       name
-//       description
-//     }
-//   }
-// `;
+export const QUERY_ALL_PRODUCTS = gql`
+  {
+    products {
+      _id
+      name
+      description
+    }
+  }
+`;

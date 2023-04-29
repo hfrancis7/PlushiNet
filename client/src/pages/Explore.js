@@ -1,5 +1,5 @@
 import React from "react";
-import UserPlushies from "../components/UserPlushies";
+import AllPlushies from "../components/AllPlushies";
 
 
 
@@ -8,7 +8,7 @@ const UserProfile = () => {
     <div className="container">
       
      
-      <UserPlushies />
+      <AllPlushies/>
       
     </div>
   );
