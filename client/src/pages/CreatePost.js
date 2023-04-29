@@ -34,6 +34,7 @@ function CreatePost() {
 
     return (
         <div className="App">
+            <h2 className='productTitle'>My PlushiNet:</h2>
             <div className="uploadImage">
                 <input
                     type="file"

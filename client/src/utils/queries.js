@@ -119,5 +119,23 @@ query GetUser($userId: ID!) {
 }
 `;
 
+export const QUERY_PRODUCTS = gql`
+  query getProducts {
+    products {
+      _id
+      name
+      description
+      image
+    }
+  }
+`;
 
-
+export const QUERY_ALL_PRODUCTS = gql`
+  {
+    products {
+      _id
+      name
+      description
+    }
+  }
+`;
