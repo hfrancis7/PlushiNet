@@ -20,7 +20,7 @@ import Footer from './components/Footer';
 import Followers from './pages/Followers';
 
 import PlushiDetails from './pages/PlushiDetails';
-import UserProfile from './pages/UserProfile';
+import AllPlushies from './pages/AllPlushies';
 
 import PostDisplay from './components/PostDisplay';
 import ViewPost from './pages/ViewPost';
@@ -70,21 +70,13 @@ function App() {
                 element={<Register />}
               />
               <Route
-                path="/followers"
-                element={<Followers />}
-              />
-              <Route
                 path="/createPost"
                 element={<CreatePost />}
               />
               <Route
-                path="/userprofile"
-                element={<UserProfile />}
+                path="/allplushies"
+                element={<AllPlushies />}
               />
-              {/* <Route
-                path="/plushidetails"
-                element={<PlushiDetails />}
-              /> */}
               <Route
                 path="/products/:_id"
                 element={<PlushiDetails />}
