@@ -11,7 +11,7 @@ db.once('open', async () => {
       username: "HaileyF",
       email: 'hfran7@yahoo.com',
       password: await bcrypt.hash("password17", saltRounds),
-      profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682625316/zspyhlpvubnljzzfbat4.jpg',
+      profile_img: '',
       posts: [],
       friends: [],
     },
@@ -19,7 +19,7 @@ db.once('open', async () => {
       username: "Devin",
       email: 'devinhfran@gmail.com',
       password: await bcrypt.hash("password17", saltRounds),
-      profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1681945403/cld-sample.jpg',
+      profile_img: '',
       posts: [],
       friends: [],
     },
@@ -27,7 +27,7 @@ db.once('open', async () => {
       username: "Clark",
       email: 'Clark@gmail.com',
       password: await bcrypt.hash("password17", saltRounds),
-      profile_img: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682627598/g6kmqbttporqbjylfpmw.jpg',
+      profile_img: '',
       posts: [],
       friends: [],
     }
@@ -35,154 +35,232 @@ db.once('open', async () => {
 
   console.log('users seeded');
 
+   //seed products
+
+   await Product.deleteMany();
+
+   const products = await Product.insertMany([
+    {
+      name: 'Wyatt',
+      description:
+        'Green laughing frog. Brand: Squishmallows. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/squishmallow-frog-wyatt.jpg',
+      posts:[]
+    },
+    {
+      name: 'Davie',
+      description:
+        'Plush Shark Toy. This ultra-squeezable, 12-inch, medium-sized plush stuffed toy is made with high-quality and ultrasoft materials. Brand: Squishmallows. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/squishmallow-shark-davie.jpg',
+      posts:[]
+    },
+    {
+      name: 'Arelux',
+      description:
+        'Funny design-The cute design is more convenient to embrace,with a lovely 3D small eyes and a mouth. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/stuffed-duck-Arelux.jpg',
+      posts:[]
+    },
+    {
+      name: 'Octo',
+      description:
+        'Super Cute Chunky Octopus Plushie. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/stuffed-octupus-Octo.jpg',
+      posts:[]
+    },
+    {
+      name: 'Jett',
+      description:
+        'Lambs & Ivy Jungle Safari Gray Plush Elephant Stuffed Animal Toy Plushie - Jett. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/stuffed-elephant.jpg',
+      posts:[]
+    },
+    {
+      name: 'Kitty',
+      description:
+        'Stuffed Animal Cat Plush Toy Anime Cute Kitten Kawaii Plushie Kitty. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/kawaii-cat.jpg',
+      posts:[]
+    },
+    {
+      name: 'Shiba Inu',
+      description:
+        'Auspicious beginning Stuffed Animal Shiba Inu Plush Toy Anime Corgi Kawaii Plush Dog. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/kawaii-shiba.jpg',
+      posts:[]
+    },
+    {
+      name: 'Spotted Seal',
+      description:
+        'Fluffy Banana Pose Spotted Seal Plush Pillow. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/pillow-walrus.jpg',
+      posts:[]
+    },
+    {
+      name: 'Kabosen',
+      description: 'Kabosen My Melody Plush Keychain,5in/13Cm Plush Toy Plush Doll. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/keychain-kabosen.jpg',
+      posts:[]
+    },
+    {
+      name: 'Timothy',
+      description:
+        'A new collection of merch from "Team Timothy" is coming to the lifestyle brand GoodSmile Moment! Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/keychain-timothy.jpg',
+      posts:[]
+    },
+    {
+      name: 'Fuecoco',
+      description:
+        'Fuecoco Plush Key Chain. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/keychain-Fuecoco.jpg',
+      posts:[]
+    },
+    {
+      name: 'Curococo',
+      description:
+        'Corocoro Coronya Yellow Cat Plush Keychain. Condition: Like New',
+      image: 'https://raw.githubusercontent.com/hfrancis7/PlushiNet/detailpage/client/public/images/keychain-Curococo.jpg',
+      posts:[]
+    }
+   ]);
+ 
+   console.log("products seeded");
+
   await Post.deleteMany();
 
   const posts = await Post.insertMany([
     {
-      body: "Mr. Avocado",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682699646/plushiexample3_ks7pmx.jpg",
+      body: "I like it!",
       username: users[0].username,
       comments: [],
       likes: [],
       user: users[0]._id,
     },
     {
-      body: "Stumpy",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682699647/plushiexample4_qcfxkd.jpg",
+      body: "So cute!",
       username: users[0].username,
       comments: [],
       likes: [],
       user: users[0]._id,
     },
     {
-      body: "Ploosh",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682698361/plushiexample2_f1e6nt.jpg",
+      body: "This is awesome!",
       username: users[1].username,
       comments: [],
       likes: [],
       user: users[1]._id,
     },
     {
-      body: "Appletun",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700435/P7340_701-08890_01_akjups.jpg",
+      body: "I need it!",
       username: users[1].username,
       comments: [],
       likes: [],
       user: users[1]._id,
     },
     {
-      body: "White Kitty",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700435/51vsUSUP3EL._AC_UF894_1000_QL80__ekjffp.jpg",
+      body: "I have that one!",
       username: users[1].username,
       comments: [],
       likes: [],
       user: users[1]._id,
     },
     {
-      body: "White Kitty",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700435/51vsUSUP3EL._AC_UF894_1000_QL80__ekjffp.jpg",
+      body: "I wish I had one...",
       username: users[1].username,
       comments: [],
       likes: [],
       user: users[1]._id,
     },
     {
-      body: "Altaria",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700434/P9103_701-96785_01_bmh80z.jpg",
+      body: "Cool!",
       username: users[1].username,
       comments: [],
       likes: [],
       user: users[1]._id,
     },
     {
-      body: "Psyduck",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700434/P6684_701-06481_06_m11nox.jpg",
+      body: "I like the color!",
       username: users[2].username,
       comments: [],
       likes: [],
       user: users[2]._id,
     },
     {
-      body: "Corgi Boi",
-      image: "https://res.cloudinary.com/dnatq7ekl/image/upload/v1682700434/51Tahu98IiL_ffd5yu.jpg",
+      body: "WOW!!!",
       username: users[2].username,
       comments: [],
       likes: [],
       user: users[2]._id,
     },
   ]);
+
+  console.log("posts seeded");
 
   //add posts to user
   for (let i = 0; i < posts.length; i++) {
     await User.findByIdAndUpdate(posts[i].user._id, { $push: { posts: posts[i]._id } });
   }
 
-  console.log("posts seeded");
+  console.log("post relationship added to user");
 
-  const comments = await Comment.insertMany([
-    {
-      body: "That's so cool!",
-      user: users[2],
-      username: users[2].username,
-      post: posts[0],
-    },
-    {
-      body: "I like your plush!",
-      user: users[1],
-      username: users[1].username,
-      post: posts[0],
-    },
-    {
-      body: "Yay!",
-      user: users[1],
-      username: users[1].username,
-      post: posts[1],
-    },
-    {
-      body: "It's so cute!",
-      user: users[2],
-      username: users[2].username,
-      post: posts[1],
-    },
-    {
-      body: "You have good taste!",
-      user: users[0],
-      username: users[0].username,
-      post: posts[2],
-    },
-    {
-      body: "Aweee!!!",
-      user: users[2],
-      username: users[2].username,
-      post: posts[2],
-    }
-  ]);
-
-  for (let i = 0; i < comments.length; i++) {
-    await Post.findByIdAndUpdate(comments[i].post._id, { $push: { comments: comments[i]._id } });
+  //add posts to product
+  for(let i = 0; i < posts.length; i++){
+    const randomProductIndex = Math.floor((Math.random() * products.length));
+    await Product.findByIdAndUpdate(products[randomProductIndex]._id, { $push: { posts: posts[i]._id } });
   }
 
-  console.log("comments seeded");
+  console.log("post ids added to product array");
 
-  //seed products
 
-  await Product.deleteMany();
 
-  const products = await Product.insertMany([
-    {
-      name: 'Wyatt',
-      description: 'Green laughing frog. Brand: Squishmallows. Condition: Like New',
-      image: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682635917/wy5hk8dqxfzr16zstjop.jpg'
-    },
-    {
-      name: 'Davie',
-      description:
-        'Plush Shark Toy. This ultra-squeezable, 12-inch, medium-sized plush stuffed toy is made with high-quality and ultrasoft materials. Brand: Squishmallows. Condition: Like New',
-      image: 'https://res.cloudinary.com/dnatq7ekl/image/upload/v1682628788/ahctovkjgvvsul46brbn.jpg'
-    },
-  ]);
+  await Comment.deleteMany();
+  // const comments = await Comment.insertMany([
+  //   {
+  //     body: "That's so cool!",
+  //     user: users[2],
+  //     username: users[2].username,
+  //     post: posts[0],
+  //   },
+  //   {
+  //     body: "I like your plush!",
+  //     user: users[1],
+  //     username: users[1].username,
+  //     post: posts[0],
+  //   },
+  //   {
+  //     body: "Yay!",
+  //     user: users[1],
+  //     username: users[1].username,
+  //     post: posts[1],
+  //   },
+  //   {
+  //     body: "It's so cute!",
+  //     user: users[2],
+  //     username: users[2].username,
+  //     post: posts[1],
+  //   },
+  //   {
+  //     body: "You have good taste!",
+  //     user: users[0],
+  //     username: users[0].username,
+  //     post: posts[2],
+  //   },
+  //   {
+  //     body: "Aweee!!!",
+  //     user: users[2],
+  //     username: users[2].username,
+  //     post: posts[2],
+  //   }
+  // ]);
 
-  console.log("products seeded");
+  // for (let i = 0; i < comments.length; i++) {
+  //   await Post.findByIdAndUpdate(comments[i].post._id, { $push: { comments: comments[i]._id } });
+  // }
+
+  //console.log("comments seeded");
+
+ 
 
   process.exit();
 });

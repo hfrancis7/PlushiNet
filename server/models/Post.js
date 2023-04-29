@@ -17,10 +17,6 @@ const postSchema = new Schema(
             trim: true,
             validate: descriptionValidator,
         },
-        image: {
-            type: String,
-            required: true,
-        },
         createdAt: {
             type: Date,
             default: Date.now(),
