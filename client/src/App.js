@@ -8,7 +8,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import {AuthProvider} from "./utils/context"
+import { AuthProvider } from "./utils/context"
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -53,46 +53,50 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <AuthProvider>
-      <Router>
-        <div>
-          <Nav />
-          <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
-            <Route
-              path="/register"
-              element={<Register />}
-            />
-            <Route
-              path="/followers"
-              element={<Followers />}
-            />
-            <Route
-              path="/createPost"
-              element={<CreatePost />}
-            />
-            <Route 
-              path="/userprofile" 
-              element={<UserProfile/>} 
-            />
-            <Route 
-              path="/plushidetails" 
-              element={<PlushiDetails/>} 
-            />
-            <Route
-            path="/postdisplay" 
-              element={<PostDisplay/>} 
-            />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
+        <Router>
+          <div>
+            <Nav />
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              <Route
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/register"
+                element={<Register />}
+              />
+              <Route
+                path="/followers"
+                element={<Followers />}
+              />
+              <Route
+                path="/createPost"
+                element={<CreatePost />}
+              />
+              <Route
+                path="/userprofile"
+                element={<UserProfile />}
+              />
+              {/* <Route
+                path="/plushidetails"
+                element={<PlushiDetails />}
+              /> */}
+              <Route
+                path="/products/:_id"
+                element={<PlushiDetails />}
+              />
+              <Route
+                path="/postdisplay"
+                element={<PostDisplay />}
+              />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
       </AuthProvider>
     </ApolloProvider>
   );
