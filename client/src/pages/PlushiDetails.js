@@ -7,18 +7,14 @@ import { QUERY_PROD } from "../utils/queries";
 
 const PlushiDetails = (props) => {
   const params = useParams();
-  console.log(params._id);
   const id = params._id;
-  const type = typeof (id);
-  console.log(type);
   const { loading, error, data } = useQuery(QUERY_PROD, {
-    variables: { _id: id },
+    variables: { productId: id },
   });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 
-  const { name, description, image } = data.product;
-
+  const { name, description, image } = data.getProduct;
   return (
     <div>
       <img src={image} ></img>
