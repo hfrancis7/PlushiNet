@@ -119,5 +119,29 @@ query GetUser($userId: ID!) {
 }
 `;
 
+//get ALL PRODUCTS that exist in the db
+export const QUERY_PRODS = gql`
+query GetProducts {
+  getProducts {
+    _id
+    name
+    description
+    image
+  }
+}
+`;
+
+//get PRODUCTS by ID that exist in the db
+export const QUERY_PROD = gql`
+query GetProduct($productId: ID!) {
+  getProduct(productId: $productId) {
+    _id
+    name
+    description
+    image
+  }
+}
+`;
+
 
 

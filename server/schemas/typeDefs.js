@@ -38,6 +38,13 @@ const typeDefs = gql`
     friends: [User]!
   }
 
+  type Product {
+    _id: ID!
+    name: String!
+    description: String
+    image: String
+  }
+
   type Auth {
     token: ID!
     user: User!
@@ -50,6 +57,8 @@ const typeDefs = gql`
     getComment(commentId: ID!): Comment
     getProfilePosts(userId: ID!): [Post]
     getUser(userId: ID!): User
+    getProducts: [Product]
+    getProduct(productId: ID!): Product
   }
 
   type Mutation {
