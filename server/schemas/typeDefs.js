@@ -50,6 +50,8 @@ const typeDefs = gql`
     getComment(commentId: ID!): Comment
     getProfilePosts(userId: ID!): [Post]
     getUser(userId: ID!): User
+    products(category: ID, name: String): [Product]
+    product(_id: ID!): Product
   }
 
   type Mutation {
@@ -61,6 +63,13 @@ const typeDefs = gql`
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
     addFriend(userId: ID!): User!
+  }
+
+  type Product {
+    _id: ID
+    name: String
+    description: String
+    image: String
   }
 `;
 

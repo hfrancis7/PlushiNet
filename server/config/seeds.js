@@ -5,7 +5,6 @@ const { User, Post,  Comment, Product} = require('../models');
 
 db.once('open', async () => {
 
-
   const products = await Product.insertMany([
     {
       name: 'Wyatt',

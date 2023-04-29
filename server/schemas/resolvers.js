@@ -1,5 +1,5 @@
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
-const { User, Post, Comment} = require('../models');
+const { User, Post, Comment, Product} = require('../models');
 const { signToken } = require('../utils/auth');
 const { countDocuments } = require('../models/Post');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
@@ -14,6 +14,20 @@ const resolvers = {
       }catch(err){
         throw new Error(err);
       }
+    },
+    products: async ( { name }) => {
+      const params = {};
+
+      if (name) {
+        params.name = {
+          $regex: name
+        };
+      }
+
+      return await Product.find(params);
+    },
+    product: async ({ _id }) => {
+      return await Product.findById(_id);
     },
     //get singular post
     async getPost(_, {postId}){
