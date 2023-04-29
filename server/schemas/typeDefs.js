@@ -19,7 +19,6 @@ const typeDefs = gql`
   type Post{
     _id: ID!
     body: String!
-    image: String!
     createdAt: String
     username: String!
     comments: [Comment]
@@ -43,6 +42,7 @@ const typeDefs = gql`
     name: String!
     description: String
     image: String
+    posts: [Post]
   }
 
   type Auth {

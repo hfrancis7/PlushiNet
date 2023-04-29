@@ -12,7 +12,8 @@ const productSchema = new Schema(
         },
         image: {
             type: String
-        }
+        },
+        posts: [{ type: Schema.Types.ObjectId, ref: "Post"}]
     });
 
 const Product = model('product', productSchema);
