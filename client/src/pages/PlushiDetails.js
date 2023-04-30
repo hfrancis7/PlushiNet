@@ -66,16 +66,21 @@ const PlushiDetails = (props) => {
       </div>
 
       <ul className="commentsection">
+          
             {postData.getProductPosts.map(({ _id, body, username, createdAt }) => (
-                <Row className="eachcomment" justify="start" key={_id}>
-                  <Col span={6} className="username">{username}</Col>
-                  <Col span={6} className="commentbody">{body}</Col>
-                  <Col span={6} className="commentcreate">{createdAt}</Col>
+
+              <>
+                <Row gutter={6} className="eachcomment" justify="start" key={_id}>
+                  <Col span={4} className="username">{username}</Col>
+                  <Col span={16} className="commentbody">{body}</Col>
                   <button className="xbtn">✗</button>
                 </Row>
+                <Row gutter={6}>
+                <Col className="commentcreate" span={6}>{createdAt}</Col>
+                </Row>
+              </>
             ))}
-        </ul>
-
+      </ul>
     </div>
   );
 };
