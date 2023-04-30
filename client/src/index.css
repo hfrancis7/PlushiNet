@@ -172,13 +172,13 @@ input:focus {
 
 .detailform {
   padding: 20px;
-  margin-left:25%;
+  margin-left: 25%;
 }
 
 .comment {
   font-family: 'Mali', cursive;
   color: green;
-  font-size: large; 
+  font-size: large;
   font-weight: 900;
   margin-left: 50%;
   margin-top: 50px;
@@ -213,7 +213,7 @@ textarea {
   border-style: dotted;
   border-color: #ee9797;
   font-size: x-large;
-  
+
 }
 
 .username {
@@ -257,7 +257,7 @@ textarea {
 .xbtn {
   margin: 20px;
   border-radius: 25px;
-  background-color:#ee9797;
+  background-color: #ee9797;
   max-height: 45px;
 }
 
@@ -349,5 +349,4 @@ textarea {
     width: 50% !important;
     margin-left: 2px !important;
   }
-
 }
