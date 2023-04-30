@@ -95,9 +95,10 @@ mutation CreateComment($postId: ID!, $body: String!) {
 //checks based on username bc i made an error in the typedefs thats going to take longer to fix
 //than just ensuring users don't have the same username... I hope.
 export const DELETE_POST = gql`
-mutation DeletePost($postId: ID!) {
-  deletePost(postId: $postId)
-}`;
+mutation Mutation($postId: ID!, $productId: ID!) {
+  deletePost(postId: $postId, productId: $productId)
+}
+`;
 
 //DELETE COMMENT FROM POST
 //Need BOTH the postId and the commentId

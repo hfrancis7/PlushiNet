@@ -186,24 +186,33 @@ const resolvers = {
       }
     },
     //deletePost
-    deletePost: async (parent, { postId }, context) => {
+    deletePost: async (parent, { postId, productId }, context) => {
       try {
-        //console.log(context.user);
         if (context.user) {
           const post = await Post.findById(postId);
-          const user = await User.findById(context.user._id);
-          if (user.username == post.username) { //just discovered user id isn't defined in the typedefs even though its a model. Too far in to fix that big of a change
+          //const user = await User.findById(context.user._id);
+          const product = await Product.findById(productId);
+          if (context.user._id == post.user) { 
             await User.findByIdAndUpdate(
               { _id: context.user._id },
               { $pull: { posts: post._id } },
               { new: true },
             );
-            for (let i = 0; i < post.comments.length; i++) {
-              let comment_toDelete_fromPost = post.comments[i];
-              //console.log(comment_toDelete_fromPost);
-              let comment_toDelete = await Comment.findById(comment_toDelete_fromPost._id);
-              await Comment.deleteOne(comment_toDelete);
+            if(product){
+              await Product.findByIdAndUpdate(
+                { _id: product._id},
+                { $pull: { posts: post._id } },
+                { new: true },
+              );
+            }else{
+              throw new UserInputError('Plushie (Product) does not exist');
             }
+            // for (let i = 0; i < post.comments.length; i++) {
+            //   let comment_toDelete_fromPost = post.comments[i];
+            //   //console.log(comment_toDelete_fromPost);
+            //   let comment_toDelete = await Comment.findById(comment_toDelete_fromPost._id);
+            //   await Comment.deleteOne(comment_toDelete);
+            // }
             await Post.deleteOne(post);
             return 'Post sucessfully deleted!';
           } else {

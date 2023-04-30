@@ -38,11 +38,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-//Routes we still need:
-//createPost
-//viewPost
-//Profile
-//FriendList
 function App() {
   return (
     <ApolloProvider client={client}>
