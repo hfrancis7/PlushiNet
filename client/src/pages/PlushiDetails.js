@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-//import PostForm from "../components/PostForm";
 import { useParams } from 'react-router';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_PROD, QUERY_PROD_POSTS } from "../utils/queries";
 import { CREATE_POST } from '../utils/mutations';
 import AuthService from '../utils/auth.js'
 import { useNavigate } from "react-router-dom";
+import DeleteBtn from "../components/DeleteBtn"
 
 const PlushiDetails = (props) => {
   const [content, setContent] = useState('');
@@ -68,7 +68,7 @@ const PlushiDetails = (props) => {
             {postData.getProductPosts.map(({ _id, body, username, createdAt }) => (
                 <li key={_id}>
                   <h3>{username}</h3>
-                  <p>{body}</p>
+                  <p>{body}</p><button>✗</button>
                   <p>{createdAt}</p>
                 </li>
             ))}
