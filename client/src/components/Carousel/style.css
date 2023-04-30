@@ -7,9 +7,11 @@ h2,h3 {
     color: rgb(0, 0, 0);
     padding: 10px;
     background-color: rgb(169, 213, 240);
-    margin: auto;
     border-radius: 25px;
     font-size: large;
+    max-width: 75%;
+    margin: auto;
+    margin-top: 30px;
 }
 
 h4 {
@@ -19,6 +21,9 @@ h4 {
     background-color: rgb(235, 194, 194);
     border-radius: 25px;
     text-align: center;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 10px;
     
 }
 
@@ -27,7 +32,7 @@ h5 {
     font-weight: 800;
     text-align: center;
     color: rgb(115, 114, 199);
-    padding: 15px;
+    padding: px;
     background-color: rgb(230, 228, 228);
     text-align: left;
     border-radius: 25px;
@@ -43,21 +48,28 @@ h5 {
 
 .newplushi {
     background-color: rgb(193, 238, 204);
+   
+    max-width: 75%;
+    margin: auto;
+    margin-top: 30px;
 }
 
 .carousel {
     border-style: dashed;
     border-color: rgb(218, 171, 85);
-    padding: 10px;
+    max-width: 45%;
     border-radius: 25px;
     background-color: white;
     
 }
 
+
+.mlplushiename {
+    background-color: rgb(245, 201, 160);
+}
 .gif {
     border-radius: 25px;
     max-width: 90px;
-    padding: 10px;
 }
 
 .containerbox {
@@ -66,5 +78,5 @@ h5 {
     border-radius: 25px;
     border-style: dashed;
     border-color: rgb(247, 225, 156);
-    margin-bottom: 20px;
+    margin: 50px;
 }

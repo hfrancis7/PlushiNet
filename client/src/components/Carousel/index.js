@@ -2,12 +2,15 @@ import React from 'react';
 import { Carousel } from 'antd';
 import { Col, Row } from 'antd';
 import './style.css';
-import plushiexample from '../../assets/plushiexample.jpg';
+import plushiexample from '../../assets/squishmallow-shark-davie.jpg';
 import plushiexample2 from '../../assets/plushiexample2.jpg';
 import plushiexample3 from '../../assets/plushiexample3.jpg';
 import plushiexample4 from '../../assets/plushiexample4.jpg';
+import Arelux from '../../assets/stuffed-duck-Arelux.jpg';
 import likegif from '../../assets/likegif.gif'
 import newgif from '../../assets/newgif.gif'
+import walrus from '../../assets/pillow-walrus.jpg';
+
 
 function Carousels() { 
   
@@ -21,14 +24,16 @@ function Carousels() {
         </h2>     
         <Carousel autoplay>
           <div>
+            <h4>Davie</h4>
             <img className='carouselimg' src={plushiexample} alt="plushiexample..." />
-            <h4>Toast</h4>
-            <h5>From the PlushiNet of:</h5>
           </div>
           <div>
+            <h4>Octo</h4>
             <img className='carouselimg' src={plushiexample2} alt="plushiexample..." />
-            <h4>Octopus</h4>
-            <h5>From the PlushiNet of:</h5>
+          </div>
+          <div>
+            <h4>Seal</h4>
+            <img className='carouselimg' src={walrus} alt="plushiexample..." />
           </div>
         </Carousel>
       </Col>
@@ -39,14 +44,16 @@ function Carousels() {
               
         <Carousel autoplay>
           <div>
-            <img className='carouselimg' src={plushiexample3} alt="plushiexample..." />
-            <h4>Avacado</h4>
-            <h5>From the PlushiNet of:</h5>
+            <h4 class='mlplushiename' >Arelux</h4>
+            <img className='carouselimg' src={Arelux} alt="plushiexample..." />
           </div>
           <div>
+            <h4 class='mlplushiename' >Avacado</h4>
+            <img className='carouselimg' src={plushiexample3} alt="plushiexample..." />
+          </div>
+          <div>
+            <h4 class='mlplushiename' >Baby Groot</h4>
             <img className='carouselimg' src={plushiexample4} alt="plushiexample..." />
-            <h4>Groot</h4>
-            <h5>From the PlushiNet of:</h5>
           </div>
         </Carousel>
       </Col>    
