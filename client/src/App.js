@@ -67,7 +67,7 @@ function App() {
                 element={<AllPlushies />}
               />
               <Route
-                path="/products/:_id"
+                path="/allplushies/:_id"
                 element={<PlushiDetails />}
               />
             </Routes>
