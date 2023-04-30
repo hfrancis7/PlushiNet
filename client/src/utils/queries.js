@@ -124,11 +124,15 @@ export const QUERY_PRODS = gql`
 query GetProducts {
   getProducts {
     _id
-    name
     description
     image
+    name
+    posts {
+      _id
+    }
   }
 }
+
 `;
 
 //get PRODUCTS by ID that exist in the db
@@ -136,12 +140,28 @@ export const QUERY_PROD = gql`
 query GetProduct($productId: ID!) {
   getProduct(productId: $productId) {
     _id
-    name
     description
     image
+    name
+    posts {
+      _id
+    }
   }
 }
 `;
+
+export const QUERY_PROD_POSTS = gql`
+query GetProducts($productId: ID!) {
+  getProductPosts(productId: $productId) {
+    _id
+    body
+    createdAt
+    user {
+      _id
+    }
+    username
+  }
+}`;
 
 
 

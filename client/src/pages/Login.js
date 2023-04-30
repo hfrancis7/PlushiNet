@@ -3,14 +3,14 @@ import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
-import {AuthContext} from '../utils/context'
+//import {AuthContext} from '../utils/context'
 
 //AntD imports
 import { Button, Checkbox, Form, Input } from 'antd';
 
 function Login(props) {
   const [form] = Form.useForm();
-  const context = useContext(AuthContext);
+  //const context = useContext(AuthContext);
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
@@ -20,7 +20,7 @@ function Login(props) {
         variables: { email: form.getFieldValue().email, password: form.getFieldValue().password },
       });
       const token = mutationResponse.data.login.token;
-      context.login(mutationResponse.data.login);
+      //context.login(mutationResponse.data.login);
       Auth.login(token);
     } catch (e) {
       console.log(e);

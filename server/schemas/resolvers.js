@@ -115,6 +115,24 @@ const resolvers = {
         throw new Error(err);
       }
     },
+    async getProductPosts(_, {productId}){
+      try {
+        const product = await Product.findById(productId);
+        if (product) {
+          const postIds = product.posts;
+          const posts = [];
+          for (let i = 0; i < postIds.length; i++) {
+            let post = await Post.findById(postIds[i].toString());
+            posts.push(post);
+          }
+          return posts;
+        } else {
+          throw new UserInputError("User does not exist");
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
+    }
   },
   Mutation: {
     //register = adding user
@@ -127,7 +145,6 @@ const resolvers = {
     //login
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
@@ -143,7 +160,7 @@ const resolvers = {
       return { token, user };
     },
     //createPost
-    createPost: async (parent, { body}, context) => {
+    createPost: async (parent, { productId, body}, context) => {
       try {
         if (context.user) {
           const userForName = await User.findById(context.user._id);
@@ -159,11 +176,11 @@ const resolvers = {
 
           await Post.create(post);
           await User.findByIdAndUpdate(context.user._id, { $push: { posts: post._id } }, { new: true });
+          await Product.findByIdAndUpdate(productId, { $push: { posts: post._id } }, { new: true });
 
           return post;
         }
         throw new AuthenticationError('Not logged in');
-
       } catch (err) {
         throw new Error(err);
       }

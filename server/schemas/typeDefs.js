@@ -59,12 +59,13 @@ const typeDefs = gql`
     getUser(userId: ID!): User
     getProducts: [Product]
     getProduct(productId: ID!): Product
+    getProductPosts(productId: ID!): [Post]
   }
 
   type Mutation {
     register(username: String!, email: String!, password: String!): Auth!
     login(email: String!, password: String!): Auth!
-    createPost(body: String!, image: String!): Post!
+    createPost(productId: ID! body: String!): Post!
     deletePost(postId: ID!): String
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!

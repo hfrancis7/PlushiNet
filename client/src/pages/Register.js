@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { REGISTER } from '../utils/mutations';
-import {AuthContext} from '../utils/context';
+//import {AuthContext} from '../utils/context';
 
 //AntD imports
 import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select } from 'antd';
@@ -41,7 +41,7 @@ const tailFormItemLayout = {
 
 function Register(props) {
   const [form] = Form.useForm();
-  const context = useContext(AuthContext);
+  //const context = useContext(AuthContext);
   const [addUser] = useMutation(REGISTER);
 
   const handleFormSubmit = async (event) => {
@@ -54,7 +54,7 @@ function Register(props) {
       },
     });
     const token = mutationResponse.data.register.token;
-    context.login(mutationResponse.data.register);
+    //context.login(mutationResponse.data.register);
     Auth.login(token);
   };
 
