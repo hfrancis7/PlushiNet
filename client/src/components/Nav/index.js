@@ -40,7 +40,7 @@ function Nav() {
                 {
                   label: <Link to="/allplushies">All Plushies</Link>,
                   key: "allplushies",
-                  icon: <UserOutlined twoToneColor="#5784ba" />
+                  icon: <HeartOutlined twoToneColor="#5784ba" />
                 }
               ]}
             />
