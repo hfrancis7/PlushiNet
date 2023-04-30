@@ -1,0 +1,20 @@
+.plushiname {
+    font-family: 'Hachi Maru Pop', cursive;
+    margin-left: 5%;
+    padding: 15px;
+    background-color: rgb(213, 236, 226);
+    border-radius: 25px;
+    color: rgb(228, 97, 97);
+    font-size: large;
+}
+
+.plushicard {
+    border-style: dotted;
+    border-radius: 25px;
+    margin: 15px;
+    border-color: rgb(142, 187, 238);
+}
+
+.plushiborder {
+    margin: 3%;
+}
