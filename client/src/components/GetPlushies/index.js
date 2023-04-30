@@ -14,9 +14,13 @@ function GetPlushies() {
         <div>
             <Row className="plushiborder" justify="start">
             {data.getProducts.map(({ _id, name, image }) => (
-                <Col className="plushicard" span={7} key={_id}>
+                <Col className="plushicard" 
+                sm={{ span: 0 }}
+                md={{ span: 6 }}
+                lg={{ span: 7 }} 
+                key={_id}>
                     <Link className="plushiname" to={`/allplushies/${_id}`}>{name}</Link>
-                    <img src={image} ></img>
+                    <img className="plushiallimg" src={image} ></img>
                 </Col>
             ))}
             </Row>
