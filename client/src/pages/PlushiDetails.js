@@ -4,12 +4,12 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_PROD, QUERY_PROD_POSTS } from "../utils/queries";
 import { CREATE_POST } from '../utils/mutations';
 import AuthService from '../utils/auth.js'
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DeleteBtn from "../components/DeleteBtn"
 
 const PlushiDetails = (props) => {
   const [content, setContent] = useState('');
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const params = useParams();
   const id = params._id; //getting id from params
   const { loading: productLoading, error: productError, data: productData } = useQuery(QUERY_PROD, {
@@ -33,7 +33,7 @@ const PlushiDetails = (props) => {
           });
           if(mutationResponse){
             window.location.reload(false);
-            //navigate('/products/' + id);
+            navigate('/products/' + id);
           }
       }catch(err){
           console.log(err);
