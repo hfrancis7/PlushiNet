@@ -6,6 +6,7 @@ import { CREATE_POST } from '../utils/mutations';
 import AuthService from '../utils/auth.js'
 import { useNavigate } from "react-router-dom";
 import DeleteBtn from "../components/DeleteBtn"
+import { Col, Divider, Row } from 'antd'
 
 const PlushiDetails = (props) => {
   const [content, setContent] = useState('');
@@ -48,32 +49,38 @@ const PlushiDetails = (props) => {
 
   return (
     <div>
-      <img src={image} ></img>
-      <h1>{name}</h1>
-      <p>{description}</p>
-      <div>
-          <form onSubmit={handleFormSubmit}>
+      <h1 className="detailname" >{name}</h1>
+      <img className="detailimg" src={image} ></img>
+      <h2 className="detaildesc">{description}</h2>
+      <div className="formdiv">
+          <form className="detailform" onSubmit={handleFormSubmit}>
               <label>
-                  Content:
-                  <textarea value={content} onChange={handleContentChange} />
-              </label>
-              <button type="submit" disabled={loading}>
-                  {loading ? 'Creating...' : 'Create'}
+                  <p className="comment">ADD A COMMENT:</p>
+                  <textarea rows="4" cols="80" value={content} onChange={handleContentChange} />
+              </label> <br></br>
+              <button className="crtbtn" type="submit" disabled={loading}>
+                  {loading ? 'Creating...' : '→'}
               </button>
               {error && <p>Error creating post</p>}
           </form>
       </div>
 
-      <ul>
+      <ul className="commentsection">
+          
             {postData.getProductPosts.map(({ _id, body, username, createdAt }) => (
-                <li key={_id}>
-                  <h3>{username}</h3>
-                  <p>{body}</p><button>✗</button>
-                  <p>{createdAt}</p>
-                </li>
-            ))}
-        </ul>
 
+              <>
+                <Row gutter={6} className="eachcomment" justify="start" key={_id}>
+                  <Col span={4} className="username">{username}</Col>
+                  <Col span={16} className="commentbody">{body}</Col>
+                  <button className="xbtn">✗</button>
+                </Row>
+                <Row gutter={6}>
+                <Col className="commentcreate" span={6}>{createdAt}</Col>
+                </Row>
+              </>
+            ))}
+      </ul>
     </div>
   );
 };

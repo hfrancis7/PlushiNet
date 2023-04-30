@@ -2,7 +2,8 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_PRODS } from "../../utils/queries";
 import { Link } from 'react-router-dom';
-
+import './style.css';
+import { Col, Divider, Row } from 'antd';
 
 function GetPlushies() {
     const { loading, error, data } = useQuery(QUERY_PRODS);
@@ -10,14 +11,16 @@ function GetPlushies() {
     if (error) return <p>Error</p>;
 
     return (
-        <ul>
+        <div>
+            <Row className="plushiborder" justify="start">
             {data.getProducts.map(({ _id, name, image }) => (
-                <li key={_id}>
+                <Col className="plushicard" span={7} key={_id}>
+                    <Link className="plushiname" to={`/allplushies/${_id}`}>{name}</Link>
                     <img src={image} ></img>
-                    <Link to={`/allplushies/${_id}`}>{name}</Link>
-                </li>
+                </Col>
             ))}
-        </ul>
+            </Row>
+        </div>
     );
 }
 

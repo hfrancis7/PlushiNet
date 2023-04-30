@@ -141,6 +141,126 @@ input:focus {
   margin-right: auto;
 }
 
+
+.detailimg {
+  border-style: dashed;
+  border-radius: 20px;
+  padding: 20px;
+  border-color: #89aee6;
+}
+
+.detailname {
+  font-family: 'Hachi Maru Pop', cursive;
+  padding: 15px;
+  background-color: rgb(193, 240, 216);
+  border-radius: 25px;
+  color: rgb(228, 97, 97);
+  font-size: x-large;
+  font-weight: 700;
+  max-width: 30%;
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.detaildesc {
+  font-family: 'Mali', cursive;
+  font-size: x-large;
+  max-width: 50%;
+  background-color: rgb(252, 205, 174);
+}
+
+.detailform {
+  padding: 20px;
+  margin-left:25%;
+}
+
+.comment {
+  font-family: 'Mali', cursive;
+  color: green;
+  font-size: large; 
+  font-weight: 900;
+  margin-left: 50%;
+  margin-top: 50px;
+}
+
+.formdiv {
+  margin: auto;
+}
+
+
+
+textarea {
+  font-family: 'Mali', cursive;
+  text-align: center;
+  font-size: large;
+  font-weight: 800;
+  background-color: rgb(241, 243, 237);
+  border-radius: 25px;
+  padding: 20px;
+  margin-left: 15%;
+  max-width: 100%;
+  max-height: 100%;
+  color: #5359a5;
+}
+
+.crtbtn {
+  font-family: 'Mali', cursive;
+  margin-left: 60%;
+  background-color: #dae8fc;
+  padding: 10px;
+  margin-top: 10px;
+  border-style: dotted;
+  border-color: #ee9797;
+  font-size: x-large;
+  
+}
+
+.username {
+  font-family: 'Hachi Maru Pop', cursive;
+  background-color: #8ef0c7;
+  padding: 10px;
+  margin-top: 10px;
+  margin: 20px;
+  border-radius: 25px;
+  text-align: center;
+  font-weight: 900;
+  max-height: 45px;
+}
+
+.commentbody {
+  font-family: 'Hachi Maru Pop', cursive;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+  margin: 20px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  background-color: #eccea6;
+  font-weight: 600;
+}
+
+.commentcreate {
+  font-family: 'Hachi Maru Pop', cursive;
+  border-style: dashed;
+  border-color: #eee3e3;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  text-align: center;
+  margin-left: 68%;
+  font-size: small;
+  font-weight: 600;
+  max-width: 20%;
+}
+
+.xbtn {
+  margin: 20px;
+  border-radius: 25px;
+  background-color:#ee9797;
+  max-height: 45px;
+}
+
 .flex-row {
   display: flex;
   flex-wrap: wrap;

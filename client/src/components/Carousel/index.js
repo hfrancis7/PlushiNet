@@ -19,7 +19,7 @@ function Carousels() {
     <div className='containerbox'>
     <Row justify="space-evenly">
       <Col className='carousel' span={10}>
-        <h2 className='newplushi'> New Plushies:
+        <h2 className='newplushi'> NEW PLUSHIES
           <img className="gif" src={newgif} alt="likegif..." />
         </h2>     
         <Carousel autoplay>
@@ -38,7 +38,7 @@ function Carousels() {
         </Carousel>
       </Col>
       <Col className='carousel' span={10}>
-        <h2 className='mostlikedplushi'> Most Liked Plushies:
+        <h2 className='mostlikedplushi'> MOST VIEWED PLUSHIES
           <img className="gif" src={likegif} alt="likegif..." />
         </h2>
               

@@ -5,7 +5,7 @@ import "../Nav/Nav.css";
 
 //AntD imports
 import { Layout, Menu } from "antd";
-import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, SmileOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, LoginOutlined, LogoutOutlined, UserAddOutlined, HeartOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 
