@@ -66,7 +66,7 @@ const typeDefs = gql`
     register(username: String!, email: String!, password: String!): Auth!
     login(email: String!, password: String!): Auth!
     createPost(productId: ID! body: String!): Post!
-    deletePost(postId: ID!): String
+    deletePost(postId: ID!, productId: ID!): String
     createComment(postId: ID!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!

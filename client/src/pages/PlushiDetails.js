@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from 'react-router';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_PROD, QUERY_PROD_POSTS } from "../utils/queries";
-import { CREATE_POST } from '../utils/mutations';
+import { CREATE_POST, DELETE_POST } from '../utils/mutations';
 import AuthService from '../utils/auth.js'
 import { useNavigate } from "react-router-dom";
 import DeleteBtn from "../components/DeleteBtn"
@@ -19,13 +19,29 @@ const PlushiDetails = (props) => {
   const {loading: postLoading, error: postError, data: postData } = useQuery(QUERY_PROD_POSTS, {
     variables: {productId: id}
   });
-  const [createPost, { loading, error }] = useMutation(CREATE_POST);
+  const [createPost, { loading: createLoading, error: createError }] = useMutation(CREATE_POST);
+  const [deletePost, { loading: deleteLoading, error: deleteError }] = useMutation(DELETE_POST);
   if (productLoading || postLoading) return <p>Loading...</p>;
   if (productError || postError) return <p>Error</p>;
-  // if(postLoading) return <p>Loading...</p>
-  // if(postError) return <p>Error</p>
 
-  //const [title, setTitle] = useState('');
+
+  const handleDeletePost = async(postId) => {
+    console.log(postId);
+    try{
+      const mutationResponse = await deletePost({
+        variables: {productId: id, postId: postId},
+        headers: {Authorization: AuthService.getToken()}
+      });
+      if(mutationResponse){
+          window.location.reload(false);
+          navigate('/allplushies/' + id);
+      }else{
+        console.log("Mutationresponse failed");
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
   const handleFormSubmit = async (event) => {
       try{
           const mutationResponse = await createPost({
@@ -34,7 +50,7 @@ const PlushiDetails = (props) => {
           });
           if(mutationResponse){
             window.location.reload(false);
-            navigate('/products/' + id);
+            navigate('/allplushies/' + id);
           }
       }catch(err){
           console.log(err);
@@ -42,7 +58,6 @@ const PlushiDetails = (props) => {
       //setContent('');
   }
 
-  //const handleTitleChange = (event) => setTitle(event.target.value);
   const handleContentChange = (event) => setContent(event.target.value);
 
   const { name, description, image, posts } = productData.getProduct;
@@ -58,10 +73,10 @@ const PlushiDetails = (props) => {
                   <p className="comment">ADD A COMMENT:</p>
                   <textarea rows="4" cols="80" value={content} onChange={handleContentChange} />
               </label> <br></br>
-              <button className="crtbtn" type="submit" disabled={loading}>
-                  {loading ? 'Creating...' : '→'}
+              <button className="crtbtn" type="submit" disabled={createLoading}>
+                  {createLoading ? 'Creating...' : '→'}
               </button>
-              {error && <p>Error creating post</p>}
+              {createError && <p>Error creating post</p>}
           </form>
       </div>
 
@@ -73,7 +88,9 @@ const PlushiDetails = (props) => {
                 <Row gutter={6} className="eachcomment" justify="start" key={_id}>
                   <Col span={4} className="username">{username}</Col>
                   <Col span={16} className="commentbody">{body}</Col>
-                  <button className="xbtn">✗</button>
+                  <button className="xbtn" onClick={() => handleDeletePost(_id)} disabled={deleteLoading}>
+                    {deleteLoading ? 'Deleting...' : '✗'}
+                  </button>
                 </Row>
                 <Row gutter={6}>
                 <Col className="commentcreate" span={6}>{createdAt}</Col>
