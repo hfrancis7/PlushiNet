@@ -35,23 +35,13 @@ export const REGISTER = gql`
 //CREATE A POST using the body gotten from user input and image gotten from image URL (string)
 //image URL should be created by cloudinary upon upload... probably gonna be tricky
 export const CREATE_POST = gql`
-mutation createPost(
-  $body: String!, 
-  $image: String!
-  ) {
-  createPost(body: $body, image: $image) {
+mutation createPost($body: String!, $productId: ID!) {
+  createPost(body: $body, productId: $productId) {
     _id
     body
-    comments {
-      _id
-    }
     createdAt
-    image
-    likeCount
-    likes {
+    user {
       _id
-      username
-      createdAt
     }
     username
   }
