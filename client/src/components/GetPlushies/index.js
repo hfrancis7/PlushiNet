@@ -14,7 +14,7 @@ function GetPlushies() {
             {data.getProducts.map(({ _id, name, image }) => (
                 <li key={_id}>
                     <img src={image} ></img>
-                    <Link to={`/products/${_id}`}>{name}</Link>
+                    <Link to={`/allplushies/${_id}`}>{name}</Link>
                 </li>
             ))}
         </ul>
