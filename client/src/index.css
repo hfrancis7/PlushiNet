@@ -199,9 +199,8 @@ textarea {
   background-color: rgb(241, 243, 237);
   border-radius: 25px;
   padding: 20px;
-  margin-left: 15%;
   max-width: 100%;
-  max-height: 100%;
+  margin-left: 15%;
   color: #5359a5;
 }
 
@@ -329,7 +328,9 @@ textarea {
 }
 
 /* Added by Manny for responsive Mobile view */
-@media screen and (max-width: 768px) {
+@media screen and  (max-width: 1025px) {
+
+
   .card {
     width: 100%;
   }
@@ -354,4 +355,52 @@ textarea {
     width: 50% !important;
     margin-left: 2px !important;
   }
+
+  .detailname, .detaildesc, .detailimg {
+    max-width: 90%
+  }
+
+  .detailimg {
+    max-width: 50%;
+  }
+
+  .comment {
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  textarea {
+    max-width: 300px;
+    margin-left: -75px;
+   
+  }
+
+  .crtbtn {
+    margin-left: 55px;
+  }
+
+  .username {
+    max-width: 100%;
+    margin: 10px;
+    font-size: small;
+  } 
+
+  .xbtn {
+    margin: auto;
+  }
+
+  .commentbody{
+    max-width: 80%;
+  }
+
+  .commentcreate {
+    max-width: 100%;
+    margin-left: 50%;
+    font-size: xx-small;
+  }
+
+  .detaildesc {
+    font-size: medium;
+  }
 }
+

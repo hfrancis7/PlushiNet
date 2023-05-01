@@ -70,10 +70,10 @@ const PlushiDetails = (props) => {
       <h2 className="detaildesc">{description}</h2>
       <div className="formdiv">
         <form className="detailform" onSubmit={handleFormSubmit}>
-          <label>
+          
             <p className="comment">ADD A COMMENT:</p>
             <textarea rows="4" cols="80" value={content} onChange={handleContentChange} />
-          </label> <br></br>
+            <br></br>
           <button className="crtbtn" type="submit" disabled={createLoading}>
             {createLoading ? 'Creating...' : '→'}
           </button>
