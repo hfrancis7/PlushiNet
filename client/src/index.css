@@ -4,6 +4,7 @@
   --tertiary: #B12704;
   --light: #fafafa;
   --dark: #272f32;
+  --turq: #b6d8f2;
   --error: rgb(228, 46, 1);
   --spacing-one: calc(1rem * 0.5);
   --spacing-two: calc(1rem);
@@ -259,6 +260,10 @@ textarea {
   border-radius: 25px;
   background-color: #ee9797;
   max-height: 45px;
+}
+
+.directions{
+  background-color: #f7f6cf;
 }
 
 .flex-row {
