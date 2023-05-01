@@ -6,15 +6,30 @@
     border-radius: 25px;
     color: rgb(228, 97, 97);
     font-size: large;
+    max-width: 100% ;
 }
 
 .plushicard {
     border-style: dotted;
     border-radius: 25px;
-    margin: 15px;
+    margin: 20px;
     border-color: rgb(142, 187, 238);
 }
 
 .plushiborder {
     margin: 3%;
+}
+
+.plushiallimg{
+    max-width: 100% ;
+  }
+
+@media screen and (max-width: 768px) {
+    
+    .plushicard {
+        width: 100%;
+      }
+
+   
+    
 }
