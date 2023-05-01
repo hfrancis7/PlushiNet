@@ -262,7 +262,9 @@ textarea {
 }
 
 .directions{
+  font-family: 'Mali', cursive;
   background-color: #f7f6cf;
+  margin-bottom: 30px;
 }
 
 .flex-row {
